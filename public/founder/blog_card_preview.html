@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Card Preview — Animated</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #050A18;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    gap: 50px;
+  }
+
+  h2 {
+    color: #F0F4FF;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 340px);
+    gap: 24px;
+  }
+
+  /* ── CARD ENTRANCE ── */
+  @keyframes cardRise {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .bcard {
+    background: #000;
+    border-radius: 16px;
+    border: 1px solid rgba(212,175,55,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    opacity: 0;
+    animation: cardRise 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+  }
+  .bcard:nth-child(1) { animation-delay: 0.1s; }
+  .bcard:nth-child(2) { animation-delay: 0.25s; }
+  .bcard:nth-child(3) { animation-delay: 0.4s; }
+
+  .bcard:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(212,175,55,0.55);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.1);
+  }
+
+  /* ── TYPOGRAPHIC HERO AREA ── */
+  .bimg {
+    height: 200px;
+    background: #000;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 28px 28px 24px;
+    overflow: hidden;
+  }
+
+  /* animated radial glow behind text — unique per card */
+  .bimg-glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .card1 .bimg-glow { background: radial-gradient(ellipse at 20% 80%, rgba(212,175,55,0.12) 0%, transparent 65%); }
+  .card2 .bimg-glow { background: radial-gradient(ellipse at 20% 80%, rgba(0,245,255,0.08) 0%, transparent 65%); }
+  .card3 .bimg-glow { background: radial-gradient(ellipse at 20% 80%, rgba(212,175,55,0.10) 0%, transparent 65%); }
+  .bcard:hover .bimg-glow { opacity: 1; }
+
+  /* gold accent line — expands on hover */
+  .accent-line {
+    position: absolute;
+    top: 0; left: 28px;
+    height: 2px;
+    width: 40px;
+    background: linear-gradient(90deg, #D4AF37, #f5d76e);
+    transition: width 0.5s cubic-bezier(0.22,1,0.36,1);
+    box-shadow: 0 0 8px rgba(212,175,55,0.5);
+  }
+  .bcard:hover .accent-line { width: calc(100% - 28px); }
+
+  /* ── WORD REVEAL ON LOAD ── */
+  .word-wrap {
+    overflow: hidden;
+    display: block;
+  }
+
+  @keyframes wordReveal {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+
+  .word-large {
+    display: block;
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 0.9;
+    opacity: 0;
+    animation: wordReveal 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
+    transition: letter-spacing 0.4s ease;
+  }
+  .bcard:hover .word-large { letter-spacing: -1px; }
+
+  .word-small {
+    display: block;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-left: 4px;
+    opacity: 0;
+    animation: wordReveal 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
+    transition: letter-spacing 0.5s ease, opacity 0.3s ease;
+  }
+  .bcard:hover .word-small { letter-spacing: 10px; }
+
+  /* stagger text reveals per card */
+  .bcard:nth-child(1) .word-large { animation-delay: 0.4s; }
+  .bcard:nth-child(1) .word-small { animation-delay: 0.55s; }
+  .bcard:nth-child(2) .word-large { animation-delay: 0.55s; }
+  .bcard:nth-child(2) .word-small { animation-delay: 0.7s; }
+  .bcard:nth-child(3) .word-large { animation-delay: 0.7s; }
+  .bcard:nth-child(3) .word-small { animation-delay: 0.85s; }
+
+  /* gold shimmer sweep on large word hover */
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .card1 .word-large,
+  .card3 .word-large {
+    color: #F0F4FF;
+    background: linear-gradient(90deg, #F0F4FF 30%, #D4AF37 50%, #F0F4FF 70%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bcard:hover .word-large {
+    animation: wordReveal 0.6s cubic-bezier(0.22,1,0.36,1) forwards,
+               shimmer 1.8s linear infinite;
+  }
+
+  .card2 .word-large {
+    color: #D4AF37;
+    background: linear-gradient(90deg, #D4AF37 30%, #fff8e1 50%, #D4AF37 70%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* color variants for small word */
+  .card1 .word-small { color: #D4AF37; }
+  .card2 .word-small { color: #F0F4FF; }
+  .card3 .word-small { color: #D4AF37; }
+
+  .btype {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1;
+    z-index: 1;
+    width: 100%;
+  }
+
+  /* ── CARD BODY ── */
+  .bbody {
+    padding: 20px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .bmeta {
+    font-size: 11px;
+    color: rgba(240,244,255,0.35);
+    letter-spacing: 1px;
+  }
+
+  .btitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #F0F4FF;
+    line-height: 1.4;
+    flex: 1;
+    transition: color 0.3s ease;
+  }
+  .bcard:hover .btitle { color: #fff; }
+
+  .btags {
+    font-size: 11px;
+    color: rgba(212,175,55,0.6);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── ACTIONS ── */
+  .bactions {
+    padding: 16px 24px 20px;
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  .btn-read {
+    background: #D4AF37;
+    color: #050A18;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-read:hover { background: #c9a227; transform: scale(1.04); }
+
+  .btn-listen {
+    background: transparent;
+    color: #F0F4FF;
+    border: 1px solid rgba(240,244,255,0.2);
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-listen:hover { border-color: rgba(240,244,255,0.5); transform: scale(1.04); }
+
+  /* ── NOTE ── */
+  .note {
+    color: rgba(240,244,255,0.35);
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .note span { color: #D4AF37; }
+</style>
+</head>
+<body>
+
+  <h2>Blog Cards — Animated Preview</h2>
+
+  <div class="cards">
+
+    <!-- Card 1 -->
+    <div class="bcard card1">
+      <div class="bimg">
+        <div class="accent-line"></div>
+        <div class="bimg-glow"></div>
+        <div class="btype">
+          <span class="word-wrap"><span class="word-large">FAILING</span></span>
+          <span class="word-wrap"><span class="word-small">silently</span></span>
+        </div>
+      </div>
+      <div class="bbody">
+        <div class="bmeta">Apr 2026 &nbsp;·&nbsp; 12 min</div>
+        <div class="btitle">Your BSS Transformation Will Fail Unless You Fix Your Business Journeys First</div>
+        <div class="btags">Digital Transformation · BSS · Podcast</div>
+      </div>
+      <div class="bactions">
+        <button class="btn-read">📖 Read</button>
+        <button class="btn-listen">🎧 Listen</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bcard card2">
+      <div class="bimg">
+        <div class="accent-line"></div>
+        <div class="bimg-glow"></div>
+        <div class="btype">
+          <span class="word-wrap"><span class="word-large">HIDDEN</span></span>
+          <span class="word-wrap"><span class="word-small">revenue</span></span>
+        </div>
+      </div>
+      <div class="bbody">
+        <div class="bmeta">Apr 2026 &nbsp;·&nbsp; 9 min</div>
+        <div class="btitle">Campaign Management Is the Most Undervalued Module in Your BSS Stack</div>
+        <div class="btags">BSS · Campaign Management · Podcast</div>
+      </div>
+      <div class="bactions">
+        <button class="btn-read">📖 Read</button>
+        <button class="btn-listen">🎧 Listen</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bcard card3">
+      <div class="bimg">
+        <div class="accent-line"></div>
+        <div class="bimg-glow"></div>
+        <div class="btype">
+          <span class="word-wrap"><span class="word-large">DATA</span></span>
+          <span class="word-wrap"><span class="word-small">first.</span></span>
+        </div>
+      </div>
+      <div class="bbody">
+        <div class="bmeta">Apr 2026 &nbsp;·&nbsp; 8 min</div>
+        <div class="btitle">AI and Data Problem of Telcos</div>
+        <div class="btags">AI · Data · Telecom · Podcast</div>
+      </div>
+      <div class="bactions">
+        <button class="btn-read">📖 Read</button>
+        <button class="btn-listen">🎧 Listen</button>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="note">Hover each card &nbsp;·&nbsp; <span>words slide in on load</span> &nbsp;·&nbsp; gold line expands &nbsp;·&nbsp; shimmer on hover</p>
+
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Website — User Manual</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  @page { margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; color: #1a1a2e; line-height: 1.7; background: #fff; }
+
+  /* Cover Page */
+  .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, #050A18 0%, #0D1525 50%, #111E35 100%); color: #fff; padding: 60px; page-break-after: always; }
+  .cover-badge { background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); color: #D4AF37; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; padding: 8px 20px; border-radius: 980px; margin-bottom: 40px; }
+  .cover h1 { font-size: 42px; font-weight: 700; letter-spacing: -1px; margin-bottom: 12px; }
+  .cover h1 span { color: #D4AF37; }
+  .cover-sub { font-size: 16px; color: rgba(255,255,255,0.55); font-weight: 300; margin-bottom: 60px; }
+  .cover-meta { display: flex; gap: 48px; justify-content: center; }
+  .cover-meta div { text-align: center; }
+  .cover-meta .lbl { font-size: 9px; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .cover-meta .val { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; }
+  .cover-line { width: 60px; height: 1px; background: #D4AF37; margin: 40px auto; }
+
+  /* TOC */
+  .toc-page { padding: 48px; page-break-after: always; }
+  .toc-page h2 { font-size: 22px; font-weight: 700; color: #050A18; margin-bottom: 32px; padding-bottom: 12px; border-bottom: 2px solid #D4AF37; }
+  .toc-item { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px dotted #e0e0e0; }
+  .toc-item .toc-num { font-size: 11px; color: #D4AF37; font-weight: 600; width: 24px; }
+  .toc-item .toc-title { flex: 1; font-size: 13px; color: #1a1a2e; font-weight: 500; }
+  .toc-item .toc-page-num { font-size: 11px; color: #999; }
+  .toc-section { margin-top: 24px; font-size: 10px; font-weight: 700; color: #D4AF37; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+
+  /* Content pages */
+  .page { padding: 48px; page-break-inside: avoid; }
+  .page-break { page-break-before: always; }
+
+  /* Section header */
+  .sec-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid #D4AF37; }
+  .sec-num { width: 36px; height: 36px; border-radius: 50%; background: #D4AF37; color: #000; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .sec-header h2 { font-size: 20px; font-weight: 700; color: #050A18; }
+
+  h3 { font-size: 14px; font-weight: 700; color: #050A18; margin: 22px 0 10px; }
+  h4 { font-size: 12px; font-weight: 600; color: #D4AF37; margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 1px; }
+  p { color: #444; margin-bottom: 10px; font-size: 13px; }
+
+  /* Info box */
+  .info-box { background: #f8f7f2; border-left: 3px solid #D4AF37; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .info-box p { margin: 0; font-size: 12px; color: #555; }
+  .info-box strong { color: #050A18; }
+
+  /* Warning box */
+  .warn-box { background: #fff8f0; border-left: 3px solid #f59e0b; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .warn-box p { margin: 0; font-size: 12px; color: #555; }
+
+  /* Success box */
+  .success-box { background: #f0faf4; border-left: 3px solid #10b981; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .success-box p { margin: 0; font-size: 12px; color: #555; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; }
+  th { background: #050A18; color: #D4AF37; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 11px; letter-spacing: 0.5px; }
+  td { padding: 9px 14px; border-bottom: 1px solid #eee; color: #444; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafafa; }
+
+  /* Code */
+  code { background: #f0f0f0; padding: 2px 7px; border-radius: 4px; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; color: #c7254e; }
+  .code-block { background: #1a1a2e; color: #e0e0e0; padding: 16px 20px; border-radius: 8px; margin: 12px 0; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; line-height: 1.7; white-space: pre; overflow-x: auto; }
+  .code-block .key { color: #D4AF37; }
+  .code-block .val { color: #00F5FF; }
+
+  /* Steps */
+  .steps { counter-reset: step; margin: 12px 0; }
+  .step { display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: #050A18; color: #D4AF37; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-body { flex: 1; }
+  .step-body strong { display: block; font-size: 13px; color: #050A18; margin-bottom: 3px; }
+  .step-body p { margin: 0; font-size: 12px; color: #666; }
+
+  /* Tags */
+  .tag { display: inline-block; background: #f0f0f0; border: 1px solid #ddd; padding: 2px 9px; border-radius: 980px; font-size: 10px; color: #555; margin: 2px; }
+  .tag.gold { background: rgba(212,175,55,0.1); border-color: rgba(212,175,55,0.4); color: #9a7a00; }
+
+  /* File path */
+  .path { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; color: #0066cc; background: #f0f7ff; padding: 2px 8px; border-radius: 4px; }
+
+  /* URL */
+  .url { color: #0066cc; font-weight: 500; text-decoration: none; font-size: 12px; }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #eee; display: flex; justify-content: space-between; font-size: 10px; color: #bbb; }
+
+  /* Two column */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+
+  /* Checklist */
+  .checklist { list-style: none; margin: 12px 0; }
+  .checklist li { padding: 6px 0; font-size: 12px; color: #444; display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #f5f5f5; }
+  .checklist li::before { content: '✓'; color: #10b981; font-weight: 700; flex-shrink: 0; }
+
+  @media print {
+    .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .code-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ COVER PAGE ══ -->
+<div class="cover">
+  <div class="cover-badge">User Manual · v1.0</div>
+  <h1>Portfolio Website<br><span>Agent Guide</span></h1>
+  <p class="cover-sub">Complete reference for managing, updating and deploying<br>Gaurav Sharma's personal portfolio website</p>
+  <div class="cover-line"></div>
+  <div class="cover-meta">
+    <div><div class="lbl">Owner</div><div class="val">Gaurav Sharma</div></div>
+    <div><div class="lbl">Live URL</div><div class="val">gauravsharma-digitalstrategist.netlify.app</div></div>
+    <div><div class="lbl">Version</div><div class="val">1.0 — April 2026</div></div>
+  </div>
+</div>
+
+<!-- ══ TABLE OF CONTENTS ══ -->
+<div class="toc-page">
+  <h2>Table of Contents</h2>
+
+  <div class="toc-section">Getting Started</div>
+  <div class="toc-item"><span class="toc-num">1</span><span class="toc-title">Project Overview & Architecture</span><span class="toc-page-num">3</span></div>
+  <div class="toc-item"><span class="toc-num">2</span><span class="toc-title">File Structure & Asset Folders</span><span class="toc-page-num">4</span></div>
+  <div class="toc-item"><span class="toc-num">3</span><span class="toc-title">Design System & Colours</span><span class="toc-page-num">5</span></div>
+
+  <div class="toc-section">Website Sections</div>
+  <div class="toc-item"><span class="toc-num">4</span><span class="toc-title">Navigation & Hero</span><span class="toc-page-num">6</span></div>
+  <div class="toc-item"><span class="toc-num">5</span><span class="toc-title">Career Journey Cards</span><span class="toc-page-num">6</span></div>
+  <div class="toc-item"><span class="toc-num">6</span><span class="toc-title">Key Engagements Carousel</span><span class="toc-page-num">7</span></div>
+  <div class="toc-item"><span class="toc-num">7</span><span class="toc-title">Core Competencies</span><span class="toc-page-num">7</span></div>
+  <div class="toc-item"><span class="toc-num">8</span><span class="toc-title">Certifications</span><span class="toc-page-num">8</span></div>
+  <div class="toc-item"><span class="toc-num">9</span><span class="toc-title">Videos & Keynotes</span><span class="toc-page-num">8</span></div>
+  <div class="toc-item"><span class="toc-num">10</span><span class="toc-title">Blogs — Read & Listen</span><span class="toc-page-num">9</span></div>
+
+  <div class="toc-section">Features & Integrations</div>
+  <div class="toc-item"><span class="toc-num">11</span><span class="toc-title">NEXUS AI Chatbot</span><span class="toc-page-num">10</span></div>
+  <div class="toc-item"><span class="toc-num">12</span><span class="toc-title">Calendly — Book a Strategy Call</span><span class="toc-page-num">11</span></div>
+  <div class="toc-item"><span class="toc-num">13</span><span class="toc-title">Deployment — Netlify</span><span class="toc-page-num">12</span></div>
+
+  <div class="toc-section">Maintenance</div>
+  <div class="toc-item"><span class="toc-num">14</span><span class="toc-title">How to Update Content</span><span class="toc-page-num">13</span></div>
+  <div class="toc-item"><span class="toc-num">15</span><span class="toc-title">Adding New Blog Posts</span><span class="toc-page-num">14</span></div>
+  <div class="toc-item"><span class="toc-num">16</span><span class="toc-title">Troubleshooting</span><span class="toc-page-num">15</span></div>
+  <div class="toc-item"><span class="toc-num">17</span><span class="toc-title">Future Roadmap</span><span class="toc-page-num">16</span></div>
+</div>
+
+<!-- ══ SECTION 1: OVERVIEW ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">1</div><h2>Project Overview & Architecture</h2></div>
+
+  <p>The portfolio is a single-file HTML website built with pure HTML, CSS and JavaScript — no frameworks, no build tools. This keeps it lightweight, fast to load and easy to maintain. Everything required is in one folder that can be deployed by dragging and dropping onto Netlify.</p>
+
+  <div class="info-box"><p><strong>Live URL:</strong> <a class="url" href="https://gauravsharma-digitalstrategist.netlify.app">gauravsharma-digitalstrategist.netlify.app</a><br>
+  <strong>Booking:</strong> <a class="url" href="https://calendly.com/imgauravraj21/30min">calendly.com/imgauravraj21/30min</a></p></div>
+
+  <h3>Architecture</h3>
+  <table>
+    <tr><th>Component</th><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>Frontend</td><td>HTML / CSS / Vanilla JS</td><td>The entire website — single index.html file</td></tr>
+    <tr><td>NEXUS Backend</td><td>Netlify Function (Node.js)</td><td>Secure API calls to Claude AI</td></tr>
+    <tr><td>AI Model</td><td>Claude Haiku (Anthropic)</td><td>Powers NEXUS chatbot intelligence</td></tr>
+    <tr><td>Hosting</td><td>Netlify</td><td>Static site hosting + serverless functions</td></tr>
+    <tr><td>Scheduling</td><td>Calendly</td><td>Book a Strategy Call feature</td></tr>
+    <tr><td>Podcasts</td><td>HTML5 Audio API</td><td>Blog listen functionality</td></tr>
+    <tr><td>Video</td><td>HTML5 Video + YouTube</td><td>Hero background + keynote videos</td></tr>
+  </table>
+
+  <h3>Key Design Decisions</h3>
+  <ul class="checklist">
+    <li>Single HTML file — no build step, no dependencies, works offline</li>
+    <li>All assets use relative paths — folder can be moved without breaking links</li>
+    <li>Dark navy + gold colour scheme — premium executive positioning</li>
+    <li>Mobile responsive at 1024px, 768px and 480px breakpoints</li>
+    <li>NEXUS API key stored in Netlify env vars — never exposed in browser</li>
+  </ul>
+</div>
+
+<!-- ══ SECTION 2: FILE STRUCTURE ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">2</div><h2>File Structure & Asset Folders</h2></div>
+
+  <div class="code-block"><span class="key">Portfolio Website/</span>
+├── <span class="val">index.html</span>                    ← Main production file
+├── <span class="val">design_preview.html</span>           ← Staging/reference file
+├── <span class="val">netlify.toml</span>                  ← Netlify configuration
+├── <span class="val">netlify/functions/nexus.js</span>    ← NEXUS Claude API backend
+│
+├── <span class="key">Portfolio/</span>                    ← Original site assets
+│   ├── Gaurav_1.mp4               ← Hero background video
+│   ├── Podcast_Experience_1.mp3   ← Blog 1 podcast
+│   ├── Podcast_Experience_2.mp3   ← Blog 2 podcast
+│   └── Podcast_Experience_3.mp3   ← Blog 3 podcast
+│
+├── <span class="key">Career Card Images/</span>
+│   ├── IBM Enhanced.png
+│   ├── RCOM Enhanced.png
+│   ├── Tecnotree Enhanced.png
+│   └── tcs enhanced.png
+│
+├── <span class="key">Corousel Video/</span>               ← Carousel backgrounds
+│   ├── Astronaut in space.mp4
+│   ├── Car Racing 2.mp4
+│   ├── Cycling.mp4
+│   └── Running.mp4
+│
+├── <span class="key">Expertise Card bg/</span>            ← 8 expertise background images
+├── <span class="key">Video Thumbnails/</span>             ← Hard Talk.jpg, Tecnotree Strategy.jpg
+├── <span class="key">Blog Card BG/</span>                 ← 3 blog cover images
+└── <span class="key">img_0.jpg</span>                     ← Profile photo (About section)</div>
+
+  <h3>Asset Dimensions Reference</h3>
+  <table>
+    <tr><th>Section</th><th>Upload Size</th><th>Format</th></tr>
+    <tr><td>Career Card logo</td><td>256×256px</td><td>PNG (transparent bg preferred)</td></tr>
+    <tr><td>Carousel video background</td><td>1920×1080px</td><td>MP4</td></tr>
+    <tr><td>Expertise card background</td><td>560×200px</td><td>PNG / JPG</td></tr>
+    <tr><td>Video thumbnails</td><td>746×340px</td><td>JPG</td></tr>
+    <tr><td>Blog card cover images</td><td>746×340px</td><td>JPG</td></tr>
+    <tr><td>Profile photo</td><td>600×800px (3:4 ratio)</td><td>JPG</td></tr>
+    <tr><td>Hero video</td><td>1920×1080px</td><td>MP4</td></tr>
+  </table>
+</div>
+
+<!-- ══ SECTION 3: DESIGN SYSTEM ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">3</div><h2>Design System & Colours</h2></div>
+
+  <p>All colours are defined as CSS variables at the top of <code>index.html</code>. Change them once and they update everywhere.</p>
+
+  <table>
+    <tr><th>Variable</th><th>Value</th><th>Used For</th></tr>
+    <tr><td><code>--bg</code></td><td>#050A18</td><td>Page background (dark navy)</td></tr>
+    <tr><td><code>--surface</code></td><td>#0D1525</td><td>Card backgrounds</td></tr>
+    <tr><td><code>--s2</code></td><td>#111E35</td><td>Secondary surface</td></tr>
+    <tr><td><code>--gold</code></td><td>#D4AF37</td><td>Primary accent — headlines, CTAs</td></tr>
+    <tr><td><code>--cyan</code></td><td>#00F5FF</td><td>Secondary accent — highlights</td></tr>
+    <tr><td><code>--text</code></td><td>#F0F4FF</td><td>Primary text</td></tr>
+    <tr><td><code>--tsub</code></td><td>#8892B0</td><td>Subtext / descriptions</td></tr>
+    <tr><td><code>--font</code></td><td>SF Pro / Helvetica Neue / Arial</td><td>All typography</td></tr>
+  </table>
+
+  <h3>Typography Scale</h3>
+  <table>
+    <tr><th>Element</th><th>Size</th><th>Weight</th></tr>
+    <tr><td>Hero name (h1)</td><td>clamp(52px, 8vw, 96px)</td><td>700</td></tr>
+    <tr><td>Section titles (h2)</td><td>clamp(28px, 4vw, 46px)</td><td>700</td></tr>
+    <tr><td>Card titles</td><td>13–17px</td><td>600–700</td></tr>
+    <tr><td>Body text</td><td>14–16px</td><td>300–400</td></tr>
+    <tr><td>Labels / badges</td><td>9–11px</td><td>600, uppercase</td></tr>
+  </table>
+</div>
+
+<!-- ══ SECTIONS 4-5 ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">4</div><h2>Navigation & Hero</h2></div>
+
+  <h3>Navigation Links</h3>
+  <table>
+    <tr><th>Link</th><th>Scrolls To</th><th>Section ID</th></tr>
+    <tr><td>About</td><td>The Story section</td><td><code>#about</code></td></tr>
+    <tr><td>Experience</td><td>Career Journey</td><td><code>#experience</code></td></tr>
+    <tr><td>Work</td><td>Key Engagements carousel</td><td><code>#work</code></td></tr>
+    <tr><td>Insights</td><td>Blogs section</td><td><code>#insights</code></td></tr>
+    <tr><td>Contact</td><td>Get In Touch</td><td><code>#contact</code></td></tr>
+    <tr><td>Book a Call (CTA)</td><td>Opens Calendly</td><td>External link</td></tr>
+  </table>
+
+  <h3>Hero Section</h3>
+  <p>The hero shows a full-screen background video (<code>Portfolio/Gaurav_1.mp4</code>) with a gradient overlay. The cycling text line rotates every 3.2 seconds through 6 different taglines. Two CTA buttons are present: <strong>Book a Strategy Call</strong> (Calendly) and <strong>Explore My Work</strong> (scrolls to #work).</p>
+
+  <div class="info-box"><p><strong>To change the hero video:</strong> Replace <span class="path">Portfolio/Gaurav_1.mp4</span> with a new file of the same name, or update the <code>src</code> attribute in the <code>&lt;video&gt;</code> tag in index.html.</p></div>
+
+  <div class="sec-header" style="margin-top:32px;"><div class="sec-num">5</div><h2>Career Journey Cards</h2></div>
+
+  <table>
+    <tr><th>Card</th><th>Background</th><th>Role</th><th>Tags</th></tr>
+    <tr><td>Freelancer</td><td>#00D100 green</td><td>Independent Consultant</td><td>AI Strategy, CXO Advisory, Business Development, B2B2X, AI Agents</td></tr>
+    <tr><td>Tecnotree</td><td>White + logo</td><td>Director — Solution Consulting</td><td>Consulting, Presales, Postsales, Solution Architect, Portfolio</td></tr>
+    <tr><td>IBM</td><td>White + logo</td><td>Senior Business Analyst</td><td>Transformation Programs, SDP, BI, Datawarehouse</td></tr>
+    <tr><td>TCS</td><td>White + logo</td><td>Business Analyst</td><td>Telecom Solutions, Prepaid, B2C, B2B</td></tr>
+    <tr><td>RCOM</td><td>White + logo</td><td>Solution Architect</td><td>Business Analyst, Solution Architect</td></tr>
+  </table>
+
+  <p>Cards are horizontally scrollable. Clicking any card expands it to reveal detailed bullet points. The <strong>Details</strong> button is pinned to the same position on all cards regardless of content length.</p>
+</div>
+
+<!-- ══ SECTIONS 6-8 ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">6</div><h2>Key Engagements Carousel</h2></div>
+
+  <p>A 4-slide auto-advancing carousel (5-second interval). Each slide has a live MP4 video playing as the background with a directional scrim (dark on left → transparent on right) so text is readable without covering the video.</p>
+
+  <table>
+    <tr><th>Slide</th><th>Title</th><th>Video File</th></tr>
+    <tr><td>1</td><td>MVNO BSS, OCS & CVM Modernization</td><td>Astronaut in space.mp4</td></tr>
+    <tr><td>2</td><td>Go Beyond Connectivity</td><td>Car Racing 2.mp4</td></tr>
+    <tr><td>3</td><td>Postpaid Billing Transformation</td><td>Cycling.mp4</td></tr>
+    <tr><td>4</td><td>Dual Speed Transformation</td><td>Running.mp4</td></tr>
+  </table>
+
+  <div class="info-box"><p><strong>To replace a carousel video:</strong> Drop a new MP4 into <span class="path">Corousel Video/</span> folder, then update the <code>src</code> in the relevant <code>&lt;video&gt;</code> tag in index.html. Target resolution: 1920×1080px.</p></div>
+
+  <div class="sec-header" style="margin-top:32px;"><div class="sec-num">7</div><h2>Core Competencies</h2></div>
+
+  <p>8 cards arranged in a 4×2 grid. Each card has a background image at 85% opacity with the competency title and description below it.</p>
+
+  <table>
+    <tr><th>Card</th><th>Background Image</th></tr>
+    <tr><td>AI/ML & GenAI Strategy</td><td>AI:ML & GenAI Strategy.png</td></tr>
+    <tr><td>Digital Transformation</td><td>Digital Transformation.png</td></tr>
+    <tr><td>Enterprise Architecture & Cloud</td><td>Enterprise Architecture & Cloud.png</td></tr>
+    <tr><td>CXO Advisory & Board Engagement</td><td>CXO Advisory & Board Engagement.png</td></tr>
+    <tr><td>Data Strategy & Analytics</td><td>Data Strategy & Analytics.png</td></tr>
+    <tr><td>Agile at Scale & DevOps</td><td>Agile at Scale & DevOps.png</td></tr>
+    <tr><td>Application Modernisation</td><td>Application Modernisation.png</td></tr>
+    <tr><td>Consulting & Business Dev</td><td>Consulting & Business Dev.png</td></tr>
+  </table>
+
+  <div class="sec-header" style="margin-top:32px;"><div class="sec-num">8</div><h2>Certifications</h2></div>
+
+  <p>9 certification badges displayed in a 3×3 grid, each 110×110px centered within the card. Images are embedded as base64 in index.html (no external file dependency).</p>
+
+  <div class="two-col">
+    <div>
+      <h4>Certifications shown</h4>
+      <ul class="checklist">
+        <li>SAFe 6 Agilist</li>
+        <li>TM Forum — Business Process</li>
+        <li>TM Forum — Digital Transformation & Maturity</li>
+        <li>TM Forum — eTOM Certified Implementation</li>
+        <li>TM Forum — Open APIs</li>
+      </ul>
+    </div>
+    <div>
+      <h4>&nbsp;</h4>
+      <ul class="checklist">
+        <li>TM Forum — Revenue Assurance</li>
+        <li>TM Forum — Information Framework</li>
+        <li>TM Forum — Digital Ecosystem</li>
+        <li>TM Forum — ODA System</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTIONS 9-10 ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">9</div><h2>Videos & Keynotes</h2></div>
+
+  <table>
+    <tr><th>Card</th><th>Title</th><th>Action</th><th>URL</th></tr>
+    <tr><td>1</td><td>Tecnotree's Digital Strategy</td><td>Opens YouTube in new tab</td><td>youtube.com/watch?v=5MoMB7rYBCE</td></tr>
+    <tr><td>2</td><td>Hard Talk: Do telecoms operators really want to be enablers?</td><td>Opens TM Forum in new tab</td><td>inform.tmforum.org/webinars-and-podcasts/...</td></tr>
+    <tr><td>3</td><td>More Videos</td><td>Coming soon placeholder</td><td>—</td></tr>
+  </table>
+
+  <div class="warn-box"><p><strong>Note:</strong> YouTube Error 153 means the video owner has disabled embedding. Videos always open in a new tab to avoid this error. To add a new video, update the <code>onclick="window.open(...)"</code> on the relevant <code>.vcard</code> div in index.html.</p></div>
+
+  <div class="sec-header" style="margin-top:32px;"><div class="sec-num">10</div><h2>Blogs — Read & Listen</h2></div>
+
+  <table>
+    <tr><th>Blog</th><th>Title</th><th>Podcast File</th></tr>
+    <tr><td>1</td><td>Your BSS Transformation Will Fail Unless You Fix Your Business Journeys First</td><td>Podcast_Experience_1.mp3</td></tr>
+    <tr><td>2</td><td>Campaign Management Is the Most Undervalued Module in Your BSS Stack</td><td>Podcast_Experience_2.mp3</td></tr>
+    <tr><td>3</td><td>Telecom Operators Don't Have an AI Problem. They Have a Data Problem.</td><td>Podcast_Experience_3.mp3</td></tr>
+  </table>
+
+  <h3>How Read works</h3>
+  <p>Clicking a blog card or the Read button opens a full-screen modal overlay with the complete article text. Click outside the modal or press the ✕ button to close.</p>
+
+  <h3>How Listen works</h3>
+  <p>Inside the modal, press the <strong>🎧 Listen</strong> button to play the MP3 podcast. The button changes to <strong>⏹ Stop</strong> while playing. Only one podcast plays at a time. Audio stops automatically when the modal is closed.</p>
+
+  <div class="info-box"><p><strong>To add a new blog:</strong> See Section 15 — Adding New Blog Posts.</p></div>
+</div>
+
+<!-- ══ SECTION 11: NEXUS ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">11</div><h2>NEXUS AI Chatbot</h2></div>
+
+  <p>NEXUS is Gaurav's AI digital twin — a floating chat widget powered by Claude Haiku. It answers questions about Gaurav's career, expertise, achievements and availability. It maintains conversation context within a session.</p>
+
+  <h3>How NEXUS works</h3>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>User sends a message</strong><p>Via the input box or by clicking one of the quick-reply chips (BSS expertise, CVM programs, AI work, Book a call)</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Frontend calls Netlify Function</strong><p>Sends the message + last 8 conversation exchanges to <code>/.netlify/functions/nexus</code></p></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Netlify Function calls Claude API</strong><p>Uses Claude Haiku with a detailed system prompt containing Gaurav's full profile. API key is kept server-side.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Response displayed</strong><p>After a typing indicator, the AI reply appears. Conversation history is maintained for follow-up questions.</p></div></div>
+  </div>
+
+  <h3>NEXUS knowledge base (system prompt covers)</h3>
+  <div class="two-col">
+    <ul class="checklist">
+      <li>Full career history (5 roles)</li>
+      <li>Key achievements & metrics</li>
+      <li>All 8 areas of expertise</li>
+      <li>9 certifications</li>
+    </ul>
+    <ul class="checklist">
+      <li>12 global clients</li>
+      <li>3 blog summaries</li>
+      <li>Contact & booking details</li>
+      <li>Location & availability</li>
+    </ul>
+  </div>
+
+  <h3>API Configuration</h3>
+  <table>
+    <tr><th>Setting</th><th>Value</th></tr>
+    <tr><td>Model</td><td>claude-haiku-4-5-20251001</td></tr>
+    <tr><td>Max tokens</td><td>300 per response</td></tr>
+    <tr><td>Conversation memory</td><td>Last 8 exchanges (16 messages)</td></tr>
+    <tr><td>API key location</td><td>Netlify Environment Variables</td></tr>
+    <tr><td>Environment variable name</td><td>ANTHROPIC_API_KEY</td></tr>
+    <tr><td>Function file</td><td>netlify/functions/nexus.js</td></tr>
+  </table>
+
+  <h3>Updating NEXUS knowledge</h3>
+  <p>To update NEXUS with new information (new clients, achievements, roles), edit the <code>SYSTEM_PROMPT</code> constant at the top of <span class="path">netlify/functions/nexus.js</span>, then redeploy.</p>
+
+  <div class="warn-box"><p><strong>Cost awareness:</strong> Claude Haiku is very affordable (~$0.25 per 1M input tokens). A typical NEXUS conversation costs less than $0.001. Monitor usage at <a class="url" href="https://console.anthropic.com">console.anthropic.com</a></p></div>
+</div>
+
+<!-- ══ SECTIONS 12-13 ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">12</div><h2>Calendly — Book a Strategy Call</h2></div>
+
+  <p>Three buttons on the site open the Calendly booking page: <strong>Book a Call</strong> (nav), <strong>Book a Strategy Call</strong> (hero), and <strong>Schedule Now</strong> (contact section).</p>
+
+  <div class="info-box"><p><strong>Calendly URL:</strong> <a class="url" href="https://calendly.com/imgauravraj21/30min">calendly.com/imgauravraj21/30min</a></p></div>
+
+  <h3>If the calendar shows wrong dates</h3>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Log in to Calendly</strong><p>Go to calendly.com and sign in</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Edit the 30min event</strong><p>Click the event type → Edit</p></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Check Availability settings</strong><p>Set date range to "Indefinitely into the future". Reduce minimum scheduling notice to 1–24 hours.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Save & Close</strong><p>Changes take effect immediately — no redeployment needed</p></div></div>
+  </div>
+
+  <div class="sec-header" style="margin-top:32px;"><div class="sec-num">13</div><h2>Deployment — Netlify</h2></div>
+
+  <h3>How to deploy / redeploy</h3>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Go to Netlify Deploys page</strong><p>app.netlify.com → gauravsharma-digitalstrategist → Deploys</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Drag and drop the folder</strong><p>Drag the entire <span class="path">Portfolio Website/</span> folder onto the deploy area on the page</p></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Wait ~20 seconds</strong><p>Netlify deploys automatically. The live URL updates immediately.</p></div></div>
+  </div>
+
+  <h3>Environment Variables (NEXUS API Key)</h3>
+  <table>
+    <tr><th>Variable</th><th>Value</th><th>Where to set</th></tr>
+    <tr><td>ANTHROPIC_API_KEY</td><td>sk-ant-... (your key)</td><td>Netlify → Site configuration → Environment variables</td></tr>
+  </table>
+
+  <div class="warn-box"><p><strong>Important:</strong> After changing an environment variable, you must redeploy for it to take effect. Use the drag-and-drop method above.</p></div>
+
+  <div class="success-box"><p><strong>Current status:</strong> Site is live and deployed. NEXUS API key is active. All links and features are working.</p></div>
+</div>
+
+<!-- ══ SECTIONS 14-15 ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">14</div><h2>How to Update Content</h2></div>
+
+  <h3>Update a career card</h3>
+  <p>Open <span class="path">index.html</span> in a text editor. Search for the company name (e.g. <code>Tecnotree Corporation</code>). Update the role title, tags, or bullet points in the <code>cc-front</code> or <code>cc-details-inner</code> div.</p>
+
+  <h3>Update contact details</h3>
+  <p>Search for <code>imgauravraj21@gmail.com</code> or <code>+91-6363705230</code> in index.html. Update all occurrences. Also update <span class="path">netlify/functions/nexus.js</span> system prompt to keep NEXUS in sync.</p>
+
+  <h3>Update the profile photo</h3>
+  <p>Replace <span class="path">img_0.jpg</span> with your new photo (keep the same filename and 3:4 portrait ratio). Redeploy.</p>
+
+  <h3>Replace a company logo on career cards</h3>
+  <p>Drop the new PNG into <span class="path">Career Card Images/</span> with the same filename as the existing one. Redeploy. No code changes needed.</p>
+
+  <h3>Replace expertise card backgrounds</h3>
+  <p>Drop the new image into <span class="path">Expertise Card bg/</span> with the exact same filename. Redeploy.</p>
+
+  <h3>Update hero stats (19+ years, $130M+, etc.)</h3>
+  <p>Search for the stat text in index.html and update in place. Also update the NEXUS system prompt in <span class="path">netlify/functions/nexus.js</span>.</p>
+
+  <div class="sec-header" style="margin-top:32px;"><div class="sec-num">15</div><h2>Adding New Blog Posts</h2></div>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Add cover image</strong><p>Drop a 746×340px JPG into <span class="path">Blog Card BG/</span> — e.g. <code>Blog 4 - Your Title.jpg</code></p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Add podcast MP3</strong><p>Drop the podcast file into <span class="path">Portfolio/</span> — e.g. <code>Podcast_Experience_4.mp3</code></p></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Add blog card in index.html</strong><p>Copy an existing <code>.bcard</code> block in the blogs section. Update title, image src, podcast src and all blog4 IDs.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Add blog modal in index.html</strong><p>Copy an existing blog overlay block. Update ID to <code>blog4-overlay</code>, update title, image and content paragraphs.</p></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Update NEXUS</strong><p>Add a brief summary of the new blog to the system prompt in <span class="path">netlify/functions/nexus.js</span></p></div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-body"><strong>Redeploy</strong><p>Drag the Portfolio Website folder onto Netlify Deploys page</p></div></div>
+  </div>
+</div>
+
+<!-- ══ SECTIONS 16-17 ══ -->
+<div class="page page-break">
+  <div class="sec-header"><div class="sec-num">16</div><h2>Troubleshooting</h2></div>
+
+  <table>
+    <tr><th>Issue</th><th>Likely Cause</th><th>Fix</th></tr>
+    <tr><td>NEXUS not responding</td><td>API key missing or expired</td><td>Check ANTHROPIC_API_KEY in Netlify env vars. Redeploy after updating.</td></tr>
+    <tr><td>NEXUS says "connection issue"</td><td>Netlify function cold start or API error</td><td>Try again — cold starts resolve in ~2 seconds. Check Netlify function logs.</td></tr>
+    <tr><td>Videos not playing in carousel</td><td>Browser autoplay blocked</td><td>Videos are muted, so autoplay should work. Check browser console for errors.</td></tr>
+    <tr><td>Hero video not showing</td><td>File path issue after redeploy</td><td>Ensure Portfolio/Gaurav_1.mp4 is inside the deployed folder.</td></tr>
+    <tr><td>YouTube Error 153</td><td>Video embedding disabled by owner</td><td>Change to window.open() instead of iframe embed.</td></tr>
+    <tr><td>Calendly shows wrong dates</td><td>Calendly availability settings</td><td>Update scheduling notice in Calendly dashboard (Section 12).</td></tr>
+    <tr><td>Nav links not scrolling</td><td>Section ID missing</td><td>Ensure target section has the correct id attribute (e.g. id="contact")</td></tr>
+    <tr><td>Blog Listen not working</td><td>MP3 file missing or wrong path</td><td>Check Portfolio/Podcast_Experience_1/2/3.mp3 exists in deployed folder.</td></tr>
+    <tr><td>Images not loading after deploy</td><td>Case-sensitive filenames</td><td>Netlify is case-sensitive. Ensure filenames match exactly including spaces.</td></tr>
+    <tr><td>Site looks broken on mobile</td><td>Viewport issue</td><td>Test in Chrome DevTools mobile view. Breakpoints: 1024px, 768px, 480px.</td></tr>
+  </table>
+
+  <h3>Checking Netlify Function logs</h3>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Go to Netlify dashboard</strong><p>app.netlify.com → your site</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "Logs & metrics"</strong><p>Then "Function logs" to see NEXUS function execution logs and any errors</p></div></div>
+  </div>
+
+  <div class="sec-header" style="margin-top:32px;"><div class="sec-num">17</div><h2>Future Roadmap</h2></div>
+
+  <table>
+    <tr><th>Feature</th><th>Priority</th><th>Notes</th></tr>
+    <tr><td>Ready Player Me 3D avatar for NEXUS</td><td>Medium</td><td>Create avatar at readyplayer.me, embed .glb with Three.js in chat header</td></tr>
+    <tr><td>Blog writing agent</td><td>High</td><td>Python + Claude API → auto-generate blog posts on telecom/BSS/AI topics</td></tr>
+    <tr><td>Add Blog 4, 5...</td><td>High</td><td>Follow Section 15 process. Aim for monthly publishing cadence.</td></tr>
+    <tr><td>AI Agents Lab section</td><td>Low</td><td>Deferred — add when ready to showcase AI agent work</td></tr>
+    <tr><td>Custom domain</td><td>Medium</td><td>Add via Netlify → Domain management. Suggested: gauravsharmact.com</td></tr>
+    <tr><td>Google Analytics</td><td>Medium</td><td>Add GA4 tracking snippet before &lt;/head&gt; in index.html</td></tr>
+    <tr><td>Contact form</td><td>Low</td><td>Can use Netlify Forms — add name="contact" to a form element</td></tr>
+  </table>
+
+  <div class="footer">
+    <span>Gaurav Sharma Portfolio — User Manual v1.0</span>
+    <span>gauravsharma-digitalstrategist.netlify.app · April 2026</span>
+  </div>
+</div>
+
+</body>
+</html>

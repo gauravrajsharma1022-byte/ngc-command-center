@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Sharma - Platform Strategy & Transformation Leader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            line-height: 1.6;
+            color: #1a2845;
+        }
+
+        .container {
+            width: 210mm;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* PAGE 1 */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            break-after: page;
+        }
+
+        /* ===== PAGE 1: HERO & POSITIONING ===== */
+        .page-1 {
+            background: linear-gradient(135deg, #0c1945 0%, #1a2f5a 100%);
+            color: white;
+            padding: 0;
+        }
+
+        .header {
+            padding: 14mm 18mm 8mm 18mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo-section {
+            font-family: 'Playfair Display', serif;
+            font-size: 18pt;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-section span {
+            color: #0a9fd8;
+            font-weight: 800;
+        }
+
+        .badge {
+            font-size: 7pt;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #0a9fd8;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            padding: 8mm 18mm;
+            max-width: 170mm;
+        }
+
+        .hero-name {
+            font-size: 11pt;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #0a9fd8;
+            margin-bottom: 3mm;
+        }
+
+        .hero-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 32pt;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 4mm;
+            letter-spacing: -1px;
+        }
+
+        .hero-subline {
+            font-size: 11pt;
+            line-height: 1.6;
+            opacity: 0.95;
+            max-width: 160mm;
+            margin-bottom: 12mm;
+            font-weight: 300;
+        }
+
+        /* Expertise Grid */
+        .expertise-grid {
+            padding: 0 18mm 16mm 18mm;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8mm;
+        }
+
+        .expertise-box {
+            background: rgba(255, 255, 255, 0.14);
+            border-left: 3mm solid #0a9fd8;
+            border-radius: 4px;
+            padding: 8mm 10mm;
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.08);
+            transition: background 0.3s ease;
+        }
+
+        .expertise-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2.5mm;
+            letter-spacing: 0.3px;
+        }
+
+        .expertise-desc {
+            font-size: 8.5pt;
+            line-height: 1.5;
+            opacity: 0.9;
+            color: white;
+        }
+
+        /* What I Do Section */
+        .what-i-do {
+            padding: 10mm 18mm;
+            background: white;
+            flex: 1;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16pt;
+            font-weight: 800;
+            color: #0c1945;
+            margin-bottom: 7mm;
+            letter-spacing: -0.3px;
+        }
+
+        .divider {
+            width: 20mm;
+            height: 2.5mm;
+            background: linear-gradient(90deg, #0a9fd8 0%, #0a9fd8 70%, transparent 100%);
+            margin-bottom: 5mm;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8mm;
+        }
+
+        .activity {
+            margin-bottom: 0;
+            background: #f8f9fc;
+            border-radius: 4px;
+            padding: 6mm 7mm;
+            border-left: 2mm solid #0a9fd8;
+            transition: background 0.2s ease;
+        }
+
+        .activity-title {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #0c1945;
+            margin-bottom: 2mm;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+        }
+
+        .activity-desc {
+            font-size: 8.5pt;
+            line-height: 1.5;
+            color: #5a6f8f;
+            font-weight: 400;
+        }
+
+        /* ===== PAGE 2: CASE STUDIES & PROOF ===== */
+        .page-2 {
+            background: white;
+            padding: 0;
+        }
+
+        .page-2-header {
+            padding: 14mm 18mm 6mm 18mm;
+            border-bottom: 1px solid #e8ecf5;
+        }
+
+        .page-2-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16pt;
+            font-weight: 800;
+            color: #0c1945;
+            letter-spacing: -0.3px;
+            margin-bottom: 5mm;
+        }
+
+        .case-studies {
+            padding: 10mm 18mm;
+            flex: 1;
+        }
+
+        .case-study {
+            margin-bottom: 12mm;
+            padding: 8mm 10mm;
+            border: 1px solid #d4e8f5;
+            background: rgba(10, 159, 216, 0.04);
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(10, 159, 216, 0.08);
+            transition: background 0.2s ease;
+        }
+
+        .case-study:last-of-type {
+            margin-bottom: 12mm;
+        }
+
+        .case-number {
+            display: inline-block;
+            width: 7mm;
+            height: 7mm;
+            background: #0a9fd8;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            font-size: 5.5pt;
+            font-weight: 700;
+            line-height: 7mm;
+            margin-right: 4mm;
+            flex-shrink: 0;
+        }
+
+        .case-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #0c1945;
+            margin-bottom: 2.5mm;
+            display: inline;
+            line-height: 1.3;
+        }
+
+        .case-subtitle {
+            font-size: 9pt;
+            color: #5a6f8f;
+            line-height: 1.5;
+            margin-bottom: 4mm;
+            display: block;
+            font-weight: 500;
+        }
+
+        .case-flow {
+            font-size: 8.5pt;
+            line-height: 1.6;
+            color: #2a3f5f;
+            margin-bottom: 3mm;
+        }
+
+        .case-flow strong {
+            color: #0a9fd8;
+            font-weight: 600;
+        }
+
+        .case-outcome {
+            font-size: 8.5pt;
+            color: #1a2845;
+            font-weight: 500;
+            line-height: 1.5;
+            padding-top: 2.5mm;
+        }
+
+        .solution-list {
+            font-size: 8pt;
+            line-height: 1.6;
+            color: #5a6f8f;
+            margin-top: 3mm;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4mm;
+        }
+
+        .solution-list strong {
+            color: #0a9fd8;
+            font-weight: 600;
+            display: block;
+            width: 100%;
+            margin-bottom: 1mm;
+        }
+
+        .pill {
+            background: rgba(10, 159, 216, 0.12);
+            color: #0a9fd8;
+            padding: 2mm 4mm;
+            border-radius: 12px;
+            font-size: 8pt;
+            font-weight: 500;
+            white-space: nowrap;
+            border: 0.5px solid #d4e8f5;
+            display: inline-block;
+        }
+
+        /* Proof Points */
+        .proof-section {
+            padding: 12mm 18mm;
+            background: linear-gradient(135deg, #f8f9fc 0%, rgba(10, 159, 216, 0.04) 100%);
+            border-top: 2px solid #d4e8f5;
+            border-radius: 4px;
+            margin: 8mm 0;
+        }
+
+        .proof-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 12pt;
+            font-weight: 800;
+            color: #0c1945;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5mm;
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 10mm;
+        }
+
+        .proof-item {
+            margin-bottom: 4mm;
+        }
+
+        .proof-label {
+            font-size: 8pt;
+            font-weight: 700;
+            color: #0a9fd8;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 2mm;
+        }
+
+        .proof-value {
+            font-size: 10pt;
+            line-height: 1.6;
+            color: #1a2845;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 6mm 18mm;
+            background: #0c1945;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 12pt;
+            font-weight: 700;
+        }
+
+        .footer-logo span {
+            color: #0a9fd8;
+        }
+
+        .footer-name {
+            font-size: 8pt;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* Print Optimization */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            body, html {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-headline {
+                font-size: 24pt;
+            }
+            .expertise-grid {
+                grid-template-columns: 1fr;
+                gap: 6mm;
+            }
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 6mm;
+            }
+            .proof-grid {
+                grid-template-columns: 1fr;
+                gap: 8mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== PAGE 1 ===== -->
+<div class="page page-1">
+    <div class="header">
+        <div>
+            <div class="logo-section">Northgate<span>.</span></div>
+            <div class="badge">Consulting</div>
+        </div>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-name">Gaurav Sharma | Principal Consultant</div>
+        <div class="hero-headline">Bridge Business Transformation & Technical Delivery</div>
+        <div class="hero-subline">
+            I help Tier-1 MNOs and MVNOs architect and execute digital transformation—from strategy discovery through hands-on delivery—without disrupting core network operations.
+        </div>
+    </div>
+
+    <div class="expertise-grid">
+        <div class="expertise-box">
+            <div class="expertise-title">Account Manager</div>
+            <div class="expertise-desc">Understands business, discovers customer needs, analyzes competitive landscape</div>
+        </div>
+        <div class="expertise-box">
+            <div class="expertise-title">Portfolio Manager</div>
+            <div class="expertise-desc">Prioritizes roadmap, identifies quick wins, balances strategic vs. tactical</div>
+        </div>
+        <div class="expertise-box">
+            <div class="expertise-title">Enterprise Architect</div>
+            <div class="expertise-desc">Designs platforms, standardizes stack, enables innovation at scale</div>
+        </div>
+        <div class="expertise-box">
+            <div class="expertise-title">Delivery Manager</div>
+            <div class="expertise-desc">Executes sprint planning, manages teams, delivers on time and budget</div>
+        </div>
+    </div>
+
+    <div class="what-i-do">
+        <div class="section-title">What I Actually Do</div>
+        <div class="divider"></div>
+        <div class="activities-grid">
+            <div class="activity">
+                <div class="activity-title">Gap Analysis & Ecosystem Review</div>
+                <div class="activity-desc">Map current state, identify redundancy, define target architecture</div>
+            </div>
+            <div class="activity">
+                <div class="activity-title">Competitor & Market Analysis</div>
+                <div class="activity-desc">Benchmark offerings, identify gaps, inform strategic direction</div>
+            </div>
+            <div class="activity">
+                <div class="activity-title">Requirements Capture & RFP Creation</div>
+                <div class="activity-desc">Define needs, evaluate vendors, negotiate terms, build roadmaps</div>
+            </div>
+            <div class="activity">
+                <div class="activity-title">Solution Architecture & Design</div>
+                <div class="activity-desc">Design platforms, APIs, integrations, and scalable infrastructure</div>
+            </div>
+            <div class="activity">
+                <div class="activity-title">Sprint Planning & Project Management</div>
+                <div class="activity-desc">Agile delivery, cross-functional coordination, risk mitigation</div>
+            </div>
+            <div class="activity">
+                <div class="activity-title">Delivery Management</div>
+                <div class="activity-desc">UAT coordination, go-live readiness, training and handoff</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 2 ===== -->
+<div class="page page-2">
+    <div class="page-2-header">
+        <div class="page-2-title">Real-World Impact</div>
+    </div>
+
+    <div class="case-studies">
+        <!-- Case Study 1 -->
+        <div class="case-study">
+            <span class="case-number">1</span>
+            <span class="case-title">Tier-1 MNO — B2B Ecosystem Modernization</span>
+            <div class="case-subtitle">Legacy BSS fragmented across markets. Manual customer journeys. Slow B2B service launches.</div>
+            <div class="case-flow">
+                <strong>Approach:</strong> Gap analysis identified platform gaps → Designed unified B2B platform (billing, ordering, partner management) → Managed multi-country rollout via sprint planning and delivery
+            </div>
+            <div class="case-outcome">
+                <strong>Result:</strong> Single unified platform • Automated customer journeys • 50% faster service launches • Reduced operational complexity
+            </div>
+        </div>
+
+        <!-- Case Study 2 -->
+        <div class="case-study">
+            <span class="case-number">2</span>
+            <span class="case-title">B2C Group MVNO — CRM & VAS Platform</span>
+            <div class="case-subtitle">Hardwired customer journeys. Limited multiplay bundles. Manual processes limiting agility.</div>
+            <div class="case-flow">
+                <strong>Approach:</strong> Market and competitor analysis defined differentiation → Designed flexible BSS/CVM platform for rapid bundling → Created RFPs, selected vendor, managed agile delivery
+            </div>
+            <div class="case-outcome">
+                <strong>Result:</strong> Flexible platform for rapid service launch • Improved customer lifetime value • Real-time campaign execution • Revenue diversification
+            </div>
+        </div>
+
+        <!-- Case Study 3 -->
+        <div class="case-study">
+            <span class="case-number">3</span>
+            <span class="case-title">Tier-3 MNO — A2P SMS & API Gateway</span>
+            <div class="case-subtitle">Legacy messaging infrastructure. Limited enterprise revenue. Manual vendor management.</div>
+            <div class="case-flow">
+                <strong>Approach:</strong> Market research identified A2P opportunity → Gap analysis and solution design for API-first platform → Executed phased delivery with partner enablement
+            </div>
+            <div class="case-outcome">
+                <strong>Result:</strong> New A2P revenue stream • Scalable architecture • Competitive VAS offering • Partner-ready platform
+            </div>
+        </div>
+
+        <!-- Case Study 4 -->
+        <div class="case-study">
+            <span class="case-number">4</span>
+            <span class="case-title">Tier-1 MNO — Legacy Modernization via Accelerator Platform</span>
+            <div class="case-subtitle">Multiple legacy backends (billing, CRM, inventory, provisioning). Cannot launch digital-first services without rip-and-replace. High integration costs and time.</div>
+            <div class="case-flow">
+                <strong>Approach:</strong> Captured requirements and performed gap analysis → Designed overlay accelerator platform architecture → Moved business logic, workflows, and orchestration to overlay layer → Exposed via open APIs for digital channel consumption
+            </div>
+            <div class="case-outcome">
+                <strong>Result:</strong> Innovate without replacing legacy • Fast digital channel enablement • Preserved investments • Open ecosystem for partners • Platform for future growth
+            </div>
+            <div class="solution-list">
+                <strong>& Many More Solutions Enabled:</strong>
+                <span class="pill">Convergent Billing & Charging</span>
+                <span class="pill">CRM Modernisation</span>
+                <span class="pill">Profile of One</span>
+                <span class="pill">Banking & Telco Convergence</span>
+                <span class="pill">Multi Experience Marketplace</span>
+                <span class="pill">Self Care App Modernisation</span>
+                <span class="pill">Travel eSIM</span>
+                <span class="pill">SMSC & USSD Gateway</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="proof-section">
+        <div class="proof-title">Scale & Expertise</div>
+        <div class="proof-grid">
+            <div>
+                <div class="proof-item">
+                    <div class="proof-label">Operating Scale</div>
+                    <div class="proof-value">25+ Operating Companies • 100M+ Subscribers • 6 Continents</div>
+                </div>
+            </div>
+            <div>
+                <div class="proof-item">
+                    <div class="proof-label">Domain Expertise</div>
+                    <div class="proof-value">Customer Management • Revenue Management • Business Enablement • Agentic AI • VAS Solutions • Fintech • Mobile Wallets • Digital Banking</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>
+            <div class="footer-logo">Northgate<span>.</span></div>
+            <div class="footer-name">Consulting</div>
+        </div>
+        <div style="text-align: right;">
+            <div class="footer-name" style="font-size: 9pt;">Gaurav Sharma | Principal Consultant</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            window.print();
+        }, 500);
+    });
+</script>
+
+</body>
+</html>

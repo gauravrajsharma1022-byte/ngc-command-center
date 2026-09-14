@@ -1,26 +1,240 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+/* ─── Northgate Brand Design System (UI UX Pro Max — B2B Service / Trust & Authority) ─── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand colors */
+  --color-brand-navy:  #0c1945;
+  --color-brand-dark:  #030611;
+  --color-brand-slate: #334155;
+  --color-brand-blue:  #3d5ad9;
+  --color-brand-cyan:  #05aff2;
+  --color-brand-light: #ffffff;
+  --color-brand-muted: #E8ECF1;
+  --color-brand-border:#E2E8F0;
+
+  /* shadcn CSS var overrides */
+  --color-background:   var(--background);
+  --color-foreground:   var(--foreground);
+  --color-card:         var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover:      var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary:      var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary:    var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:        var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent:       var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive:  var(--destructive);
+  --color-border:       var(--border);
+  --color-input:        var(--input);
+  --color-ring:         var(--ring);
+
+  /* Fonts */
+  --font-heading: 'Lexend', sans-serif;
+  --font-display: var(--font-lexend), ui-sans-serif, sans-serif;
+  --font-body:    'Source Sans 3', sans-serif;
+  --font-sans:    var(--font-source-sans);
+  --font-mono:    var(--font-geist-mono);
+
+  /* Extended palette for new design system */
+  --color-ink:        #070b1c;
+  --color-panel:      #0b1330;
+  --color-dark:       #050912;
+  --color-navy:       #0c1945;
+  --color-navy-deep:  #0a1640;
+  --color-blue:       #3d5ad9;
+  --color-blue-soft:  #6f8bff;
+  --color-cyan:       #05aff2;
+  --color-mute:       #8b97b5;
+  --color-mute-deep:  #5f6f95;
+
+  /* Sector accent tokens */
+  --color-telecom:    #6f8bff;
+  --color-healthcare: #34d8a6;
+  --color-fintech:    #a78bfa;
+
+  /* Display sizes — clamp for fluid type */
+  --text-display-2xl: clamp(3rem, 6vw, 7rem);
+  --text-display-xl:  clamp(2.25rem, 5vw, 5.5rem);
+  --text-display-lg:  clamp(1.875rem, 4vw, 4rem);
+  --text-display-md:  clamp(1.5rem, 3vw, 2.75rem);
+
+  /* Shadows */
+  --shadow-card:       0 4px 24px rgba(12,25,69,0.08);
+  --shadow-card-hover: 0 20px 60px rgba(12,25,69,0.16);
+  --shadow-cyan-glow:  0 0 40px rgba(5,175,242,0.3);
+
+  /* Border radius */
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Keyframes */
+  --animate-gradient-shift: gradient-shift 8s ease infinite;
+  --animate-shimmer:        shimmer 2s infinite;
+  --animate-pulse-slow:     pulse-slow 4s ease-in-out infinite;
+  --animate-fade-up:        fade-up 0.6s ease forwards;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* shadcn token overrides — Northgate palette */
+:root {
+  --background: oklch(0.988 0.003 240);
+  --foreground: oklch(0.145 0.035 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0.035 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0.035 255);
+  --primary: oklch(0.38 0.12 240);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.92 0.01 240);
+  --secondary-foreground: oklch(0.2 0.04 255);
+  --muted: oklch(0.935 0.008 240);
+  --muted-foreground: oklch(0.52 0.04 240);
+  --accent: oklch(0.7 0.1 60);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.91 0.01 240);
+  --input: oklch(0.91 0.01 240);
+  --ring: oklch(0.38 0.12 240);
+  --radius: 0.75rem;
+}
+
+/* ─── Keyframe definitions ─── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Base ─── */
+@layer base {
+  * { @apply border-border outline-ring/50; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #0a1640;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #0c1945;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lexend', sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Component utilities ─── */
+@layer utilities {
+  /* Hero background via CSS class — avoids any inline-style hydration flash */
+  .hero-bg {
+    background:
+      radial-gradient(125% 80% at 72% 8%, rgba(5,175,242,0.20), transparent 58%),
+      radial-gradient(110% 130% at 12% 100%, rgba(61,90,217,0.30), transparent 55%),
+      linear-gradient(178deg, #0a1640 0%, #0c2350 42%, #0a1c4a 72%, #0b1846 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #3d5ad9, #0c1945 40%, #05aff2);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 6s ease infinite;
+  }
+
+  /* kept class name for backwards compat — now renders cyan */
+  .text-gradient-amber {
+    background: linear-gradient(90deg, #05aff2, #38d0f5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass-nav {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(12, 25, 69, 0.92);
+  }
+
+  .video-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(3,6,17,0.75) 0%,
+      rgba(61,90,217,0.25) 50%,
+      rgba(12,25,69,0.70) 100%
+    );
+  }
+
+  .card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(12,25,69,0.16);
+  }
+
+  .cyan-accent-line::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 4px;
+    background: #05aff2;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-padding {
+    padding-top: clamp(4rem, 8vw, 9rem);
+    padding-bottom: clamp(4rem, 8vw, 9rem);
+  }
+
+  .placeholder-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .placeholder-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%);
+    animation: shimmer 2s infinite;
+  }
 }

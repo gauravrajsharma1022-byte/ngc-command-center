@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Sharma - Enterprise Architecture Leadership for Telecom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            line-height: 1.5;
+            color: #1a2340;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0c1945 0%, #1a2340 100%);
+            color: white;
+            padding: 12mm 16mm;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+
+        .hero-logo {
+            height: 7mm;
+            margin-bottom: 6mm;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 26pt;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 3mm;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 11pt;
+            opacity: 0.95;
+            max-width: 150mm;
+            margin: 0 auto 4mm;
+            font-weight: 500;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 12mm;
+            margin-top: 4mm;
+            font-size: 9pt;
+            opacity: 0.9;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-weight: 700;
+            font-size: 10pt;
+            margin-bottom: 1mm;
+        }
+
+        /* Expertise Section */
+        .expertise-section {
+            padding: 10mm 16mm;
+            background: #f8f9fb;
+            flex: 0 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Lexend', sans-serif;
+            font-size: 14pt;
+            font-weight: 700;
+            color: #0c1945;
+            margin-bottom: 6mm;
+            letter-spacing: -0.3px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4mm;
+            margin-bottom: 4mm;
+        }
+
+        .expertise-card {
+            background: white;
+            padding: 4mm 5mm;
+            border-left: 2mm solid #0a9fd8;
+            border-radius: 2px;
+        }
+
+        .expertise-card h3 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 9pt;
+            font-weight: 700;
+            color: #0c1945;
+            margin-bottom: 2mm;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .expertise-card p {
+            font-size: 8pt;
+            line-height: 1.4;
+            color: #2a3f5f;
+        }
+
+        /* Impact Areas Section */
+        .impact-section {
+            padding: 10mm 16mm;
+            background: white;
+            flex: 0 0 auto;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4mm;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f5faff 100%);
+            padding: 5mm;
+            border-radius: 3px;
+            border-top: 3mm solid #0a9fd8;
+            position: relative;
+        }
+
+        .impact-icon {
+            width: 10mm;
+            height: 10mm;
+            background: linear-gradient(135deg, #0a9fd8 0%, #2f52e0 100%);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 7pt;
+            margin-bottom: 3mm;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .impact-card h4 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 9pt;
+            font-weight: 700;
+            color: #0c1945;
+            margin-bottom: 2mm;
+            line-height: 1.3;
+        }
+
+        .impact-metric {
+            font-size: 8pt;
+            color: #0a9fd8;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Proof Points Section */
+        .proof-section {
+            padding: 8mm 16mm;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fb 100%);
+            flex: 0 0 auto;
+        }
+
+        .proof-metrics {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3mm;
+            margin-bottom: 5mm;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 3mm 0;
+            border-bottom: 1px solid #e0e6f2;
+        }
+
+        .metric-value {
+            font-family: 'Lexend', sans-serif;
+            font-size: 11pt;
+            font-weight: 700;
+            color: #0a9fd8;
+            line-height: 1.2;
+        }
+
+        .metric-label {
+            font-size: 7pt;
+            color: #5a6f8f;
+            margin-top: 1mm;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+
+        .clients-section {
+            margin-top: 4mm;
+        }
+
+        .clients-label {
+            font-size: 8pt;
+            color: #5a6f8f;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 700;
+            margin-bottom: 3mm;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 3mm;
+            align-items: center;
+        }
+
+        .client-logo {
+            height: 7mm;
+            background: white;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e0e6f2;
+            padding: 1mm;
+            font-size: 6pt;
+            font-weight: 700;
+            color: #0c1945;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* Footer/CTA */
+        .footer {
+            padding: 6mm 16mm;
+            background: #0c1945;
+            color: white;
+            text-align: center;
+            font-size: 9pt;
+            flex: 0 0 auto;
+            position: relative;
+        }
+
+        .footer-logo {
+            height: 5mm;
+            margin-bottom: 3mm;
+            display: inline-block;
+        }
+
+        .footer p {
+            margin-bottom: 2mm;
+            opacity: 0.95;
+        }
+
+        .footer-cta {
+            font-weight: 700;
+            color: #0a9fd8;
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2mm;
+        }
+
+        /* Northgate Logo as Base64 */
+        .logo-northgate-white {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+        }
+
+        .logo-northgate-navy {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+        }
+
+        /* Print Optimization */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            body, html {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="hero-logo">Northgate</div>
+        <h1>Enterprise Architecture Leadership for Telecom</h1>
+        <p>Account Manager who architects. Portfolio strategist who executes. Bridge between business transformation and engineering excellence.</p>
+        <div class="hero-stats">
+            <div class="hero-stat"><strong>25+</strong> OpCos</div>
+            <div class="hero-stat"><strong>$130M+</strong> Value</div>
+            <div class="hero-stat"><strong>40-50%</strong> Gains</div>
+            <div class="hero-stat"><strong>6</strong> Continents</div>
+        </div>
+    </div>
+
+    <!-- EXPERTISE SECTION -->
+    <div class="expertise-section">
+        <div class="section-title">Multi-Dimensional Expertise</div>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <h3>Account Manager</h3>
+                <p>Customer needs discovery, stakeholder management, competitive analysis, retention strategy</p>
+            </div>
+            <div class="expertise-card">
+                <h3>Portfolio Manager</h3>
+                <p>Enterprise roadmap governance, product gap assessment, ecosystem analysis, backlog prioritization</p>
+            </div>
+            <div class="expertise-card">
+                <h3>Enterprise Architect</h3>
+                <p>Platform standardization, ARB leadership, integration governance, cloud-native alignment</p>
+            </div>
+            <div class="expertise-card">
+                <h3>Delivery Manager</h3>
+                <p>Multi-OpCo program execution, cross-functional alignment, on-time delivery, risk mitigation</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPACT AREAS SECTION -->
+    <div class="impact-section">
+        <div class="section-title">Five Strategic Impact Areas</div>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-icon">💰</div>
+                <h4>AI-Powered Revenue Optimization</h4>
+                <div class="impact-metric">$5-20M+ incremental revenue per operator via dynamic pricing & churn prevention</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">👥</div>
+                <h4>Omnichannel Customer Experience</h4>
+                <div class="impact-metric">20-30% LTV improvement, 15-25% churn reduction through seamless journeys</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">🌐</div>
+                <h4>Digital Ecosystem & B2B2X</h4>
+                <div class="impact-metric">5-15% incremental revenue via partner monetization & ecosystem models</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">⚙️</div>
+                <h4>Intelligent Operations</h4>
+                <div class="impact-metric">30-40% operational efficiency via AI agents, fraud detection, real-time decisioning</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">🚀</div>
+                <h4>Product Innovation Roadmap</h4>
+                <div class="impact-metric">3-5 new revenue products/services launched annually via standardization</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon">📊</div>
+                <h4>Telecom Domain Expertise</h4>
+                <div class="impact-metric">Complete value stack: CRM, Billing, Revenue Mgmt, VAS, TM Forum ODA, AI</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROOF POINTS SECTION -->
+    <div class="proof-section">
+        <div class="proof-metrics">
+            <div class="metric">
+                <div class="metric-value">100M+</div>
+                <div class="metric-label">Subscribers</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">40%</div>
+                <div class="metric-label">Tech Dedup</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">50%</div>
+                <div class="metric-label">Faster Deploy</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">40%</div>
+                <div class="metric-label">Op Efficiency</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">25+</div>
+                <div class="metric-label">Operating Cos</div>
+            </div>
+        </div>
+
+        <div class="clients-section">
+            <div class="clients-label">Key Clients & Operating Companies</div>
+            <div class="clients-grid">
+                <div class="client-logo">MTN Group</div>
+                <div class="client-logo">Airtel Africa</div>
+                <div class="client-logo">Ooredoo</div>
+                <div class="client-logo">STC Saudi</div>
+                <div class="client-logo">Telefónica</div>
+                <div class="client-logo">Zain</div>
+                <div class="client-logo">Claro</div>
+                <div class="client-logo">Lycamobile</div>
+                <div class="client-logo">INDOSAT</div>
+                <div class="client-logo">Elisa</div>
+                <div class="client-logo">Umniah</div>
+                <div class="client-logo">Omantel</div>
+                <div class="client-logo">TM Mauritius</div>
+                <div class="client-logo">Vodafone</div>
+                <div class="client-logo">Orange</div>
+                <div class="client-logo">Telecom Italia</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER/CTA -->
+    <div class="footer">
+        <div class="footer-logo">Northgate Consulting</div>
+        <p>Strategic advisory for telecom operators | Architecture governance | Multi-OpCo transformation</p>
+        <p style="font-size: 8pt; opacity: 0.8;">Available for 3-18 month engagements | Remote-first, on-site as needed | Direct engagement with CIO/CTO/Board</p>
+        <div class="footer-cta">Ready to transform your platform strategy</div>
+    </div>
+</div>
+
+<script>
+    // Auto-print to PDF on page load (for headless Chrome)
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            window.print();
+        }, 500);
+    });
+</script>
+</body>
+</html>
