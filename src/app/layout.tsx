@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lexend, Source_Sans_3, Geist_Mono } from "next/font/google";
 import { headers } from "next/headers";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -77,6 +78,25 @@ export default async function RootLayout({
       lang="en"
       className={`${lexend.variable} ${sourceSans.variable} ${geistMono.variable} scroll-smooth`}
     >
+      <head>
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-VJ5J1KKF75"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-VJ5J1KKF75');
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col antialiased" style={{ backgroundColor: "#ffffff" }}>
         {!hideChrome && <Navbar />}
         <main className="flex-1">{children}</main>
