@@ -6,7 +6,116 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 
-const ARTICLES = [
+type ArticleType = {
+  id: number;
+  hookLarge: string;
+  hookSmall: string;
+  hookLargeGold: boolean;
+  date: string;
+  readMin: string;
+  title: string;
+  tags: string[];
+  audioSrc?: string;
+  imageSrc?: string;
+  content: string;
+};
+
+const ARTICLES: ArticleType[] = [
+  {
+    id: 0,
+    hookLarge: "API-FIRST",
+    hookSmall: "ARCHITECTURE-LAST",
+    hookLargeGold: true,
+    date: "Sep 2026",
+    readMin: "6 min",
+    title: "Why Operators Stall on NaaS Adoption—and How ODA Changes That",
+    tags: ["NaaS", "ODA", "Network APIs"],
+    imageSrc: "/images/naas-architecture.png",
+    content: `
+<p>Network-as-a-Service sounds straightforward: expose network capabilities through APIs and allow enterprises and developers to consume connectivity on demand.</p>
+
+<p>Operators understand the opportunity. Yet many struggle to move beyond pilots and presentations.</p>
+
+<p>The problem is not the NaaS vision. It is the architecture underneath it.</p>
+
+<h3>The legacy architecture problem</h3>
+
+<p>Most traditional BSS/OSS environments were built around tightly coupled platforms, proprietary integrations and long release cycles. They were designed to provision telecom services—not to expose network capabilities dynamically to an external ecosystem.</p>
+
+<p>When operators try to build NaaS on top of this environment, they often add an API layer without changing the systems behind it. The front end may look modern, but every request still travels through complex workflows, duplicated data and vendor-specific interfaces.</p>
+
+<p>The result is predictable:</p>
+
+<ul style="margin-left: 1.25rem; color: #8892b0;">
+  <li>Slow service launches</li>
+  <li>Expensive integrations</li>
+  <li>Limited automation</li>
+  <li>Difficult partner onboarding</li>
+  <li>Continued dependence on incumbent vendors</li>
+</ul>
+
+<p>This is why simply "adding APIs" does not create NaaS. If the underlying architecture remains rigid, the APIs only hide the complexity—they do not remove it.</p>
+
+<h3>The business impact is bigger than IT</h3>
+
+<p>NaaS depends on speed.</p>
+
+<p>An operator should be able to expose a network capability, package it commercially, onboard partners and scale consumption without launching a major transformation project each time.</p>
+
+<p>But when every new use case requires custom development across BSS, OSS and network domains, the economics quickly fall apart. Opportunities such as Quality on Demand, device location, number verification, SIM-swap detection and edge discovery may exist technically. The operator's architecture determines whether they can become repeatable, commercially viable services.</p>
+
+<p>That is the real bottleneck.</p>
+
+<!-- IMAGE_BREAK -->
+
+<h3>ODA changes the foundation</h3>
+
+<p>TM Forum's Open Digital Architecture provides a more practical foundation for NaaS by breaking the traditional stack into interoperable business and technology components. Instead of treating BSS/OSS as one large platform, operators can organize capabilities into modular components with clearly defined responsibilities and interfaces.</p>
+
+<p>This creates four important shifts:</p>
+
+<p><strong>1. Components can evolve independently</strong><br/>Catalog, order management, charging, assurance and partner management no longer need to move as one tightly coupled release. Operators can modernize priority areas progressively, without waiting for a complete replacement of the existing estate.</p>
+
+<p><strong>2. Standard APIs reduce integration friction</strong><br/>TM Forum Open APIs provide consistent interfaces between business and operational components. This does not eliminate integration work, but it reduces the need to reinvent interfaces for every system, vendor and use case.</p>
+
+<p><strong>3. Vendor independence becomes achievable</strong><br/>ODA does not automatically remove vendor lock-in. It creates the conditions to reduce it. When components follow standard interfaces and data contracts, operators gain more freedom to replace, upgrade or introduce capabilities without rebuilding the entire architecture.</p>
+
+<p><strong>4. Automation becomes part of the design</strong><br/>NaaS requires more than API exposure. It needs automated fulfilment, policy control, charging, assurance, consent and lifecycle management behind those APIs. A componentized architecture makes these functions easier to coordinate and scale across multiple products and partners.</p>
+
+<h3>Where CAMARA and GSMA Open Gateway fit</h3>
+
+<p>ODA helps modernize the operator's internal business and operational architecture. CAMARA and GSMA Open Gateway help standardize how network capabilities are exposed externally.</p>
+
+<p>CAMARA develops open, interoperable APIs for capabilities such as Number Verification, SIM Swap, Device Location and Quality on Demand. GSMA Open Gateway provides the industry framework for making these APIs consistently available across operator networks and markets.</p>
+
+<p>Together, they address a major barrier to NaaS adoption: fragmentation.</p>
+
+<p><strong>CAMARA and Open Gateway standardize the external doorway. ODA helps organize what sits behind it.</strong></p>
+
+<h3>The action operators should take</h3>
+
+<p>Operators should stop treating NaaS as a standalone API project. The starting point should be a focused architecture assessment:</p>
+
+<ul style="margin-left: 1.25rem; color: #8892b0;">
+  <li>Which network capabilities have real market demand?</li>
+  <li>Which ODA components are needed to commercialize them?</li>
+  <li>Where do legacy dependencies prevent automation?</li>
+  <li>Which interfaces can move to TM Forum Open APIs?</li>
+  <li>How will CAMARA APIs connect to fulfilment, charging, assurance and consent?</li>
+  <li>Which components must remain strategic, and which should be replaceable?</li>
+</ul>
+
+<p>Then start with one commercially meaningful use case. Prove the complete journey—from API request to network execution, charging and assurance. Use that implementation to establish reusable architectural patterns for the next service.</p>
+
+<h3>The takeaway</h3>
+
+<p>Operators do not stall on NaaS because they lack network capabilities. They stall because legacy BSS/OSS environments make those capabilities difficult to expose, fulfil and monetize at ecosystem speed.</p>
+
+<p>ODA provides the componentization and standard interfaces needed to modernize that foundation. CAMARA and GSMA Open Gateway provide a common way to expose network capabilities to developers and partners.</p>
+
+<p>NaaS succeeds when these pieces work together—not as another layer added to the legacy stack, but as a deliberate change to how the operator is built.</p>
+    `,
+  },
   {
     id: 1,
     hookLarge: "FAILING",
@@ -105,11 +214,13 @@ const ARTICLES = [
 
 // ─── Podcast player ────────────────────────────────────────────────────────────
 
-function PodcastPlayer({ src }: { src: string }) {
+function PodcastPlayer({ src }: { src?: string }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => () => { audioRef.current?.pause(); }, []);
+
+  if (!src) return null;
 
   const toggle = () => {
     if (!audioRef.current) return;
@@ -119,11 +230,11 @@ function PodcastPlayer({ src }: { src: string }) {
 
   return (
     <div className="flex items-center gap-3 my-6 px-4 py-3 rounded-xl"
-      style={{ background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.2)" }}>
+      style={{ background: "rgba(5,175,242,0.07)", border: "1px solid rgba(5,175,242,0.2)" }}>
       <audio ref={audioRef} src={src} onEnded={() => setPlaying(false)} />
       <button onClick={toggle}
         className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-transform hover:scale-105"
-        style={{ background: "#D4AF37" }}>
+        style={{ background: "#05aff2" }}>
         {playing
           ? <Pause size={13} className="text-black" />
           : <Play size={13} className="text-black ml-0.5" />}
@@ -134,14 +245,14 @@ function PodcastPlayer({ src }: { src: string }) {
           {playing ? "Playing…" : "Press play to listen"}
         </p>
       </div>
-      <Headphones size={15} className="ml-auto shrink-0" style={{ color: "rgba(212,175,55,0.4)" }} />
+      <Headphones size={15} className="ml-auto shrink-0" style={{ color: "rgba(5,175,242,0.4)" }} />
     </div>
   );
 }
 
 // ─── Modal ─────────────────────────────────────────────────────────────────────
 
-function ArticleModal({ article, onClose }: { article: typeof ARTICLES[0]; onClose: () => void }) {
+function ArticleModal({ article, onClose }: { article: ArticleType; onClose: () => void }) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const esc = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -161,7 +272,7 @@ function ArticleModal({ article, onClose }: { article: typeof ARTICLES[0]; onClo
     >
       <motion.div
         className="relative w-full max-w-2xl max-h-[90vh] rounded-2xl overflow-hidden flex flex-col"
-        style={{ background: "#0D1525", border: "1px solid rgba(212,175,55,0.2)", boxShadow: "0 32px 80px rgba(0,0,0,0.85), 0 0 36px rgba(212,175,55,0.1)" }}
+        style={{ background: "#0D1525", border: "1px solid rgba(5,175,242,0.2)", boxShadow: "0 32px 80px rgba(0,0,0,0.85), 0 0 36px rgba(5,175,242,0.1)" }}
         initial={{ y: 32, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 24, opacity: 0 }}
@@ -173,7 +284,7 @@ function ArticleModal({ article, onClose }: { article: typeof ARTICLES[0]; onClo
               {article.tags.map((t) => (
                 <span key={t}
                   className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-md tracking-widest uppercase"
-                  style={{ color: "#D4AF37", background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.2)" }}>
+                  style={{ color: "#05aff2", background: "rgba(5,175,242,0.08)", border: "1px solid rgba(5,175,242,0.2)" }}>
                   {t}
                 </span>
               ))}
@@ -196,7 +307,16 @@ function ArticleModal({ article, onClose }: { article: typeof ARTICLES[0]; onClo
         </div>
         <div className="overflow-y-auto flex-1 px-7 pb-8">
           <PodcastPlayer src={article.audioSrc} />
-          <div className="article-modal-body" dangerouslySetInnerHTML={{ __html: article.content }} />
+          <div className="article-modal-body" dangerouslySetInnerHTML={{ __html: article.content.split('<!-- IMAGE_BREAK -->')[0] }} />
+          {article.imageSrc && (
+            <img
+              src={article.imageSrc}
+              alt={article.title}
+              className="w-full rounded-lg my-8"
+              style={{ maxHeight: "300px", objectFit: "cover" }}
+            />
+          )}
+          <div className="article-modal-body" dangerouslySetInnerHTML={{ __html: article.content.split('<!-- IMAGE_BREAK -->')[1] || '' }} />
         </div>
       </motion.div>
     </motion.div>
@@ -205,15 +325,15 @@ function ArticleModal({ article, onClose }: { article: typeof ARTICLES[0]; onClo
 
 // ─── Card ──────────────────────────────────────────────────────────────────────
 
-function ArticleCard({ article, onClick }: { article: typeof ARTICLES[0]; onClick: () => void }) {
+function ArticleCard({ article, onClick }: { article: ArticleType; onClick: () => void }) {
   return (
     <motion.div
       className="group flex flex-col rounded-2xl overflow-hidden cursor-pointer"
-      style={{ background: "#000", border: "1px solid rgba(212,175,55,0.15)", boxShadow: "0 4px 24px rgba(0,0,0,0.4)" }}
+      style={{ background: "#000", border: "1px solid rgba(5,175,242,0.15)", boxShadow: "0 4px 24px rgba(0,0,0,0.4)" }}
       whileHover={{
         y: -8,
-        borderColor: "rgba(212,175,55,0.55)",
-        boxShadow: "0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.12)",
+        borderColor: "rgba(5,175,242,0.55)",
+        boxShadow: "0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(5,175,242,0.12)",
         transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
       }}
       initial={{ opacity: 0, y: 32 }}
@@ -230,13 +350,13 @@ function ArticleCard({ article, onClick }: { article: typeof ARTICLES[0]; onClic
           transition={{ duration: 0.5 }}
           style={{
             background: article.hookLargeGold
-              ? "radial-gradient(ellipse at 20% 80%, rgba(0,245,255,0.08) 0%, transparent 65%)"
-              : "radial-gradient(ellipse at 20% 80%, rgba(212,175,55,0.12) 0%, transparent 65%)",
+              ? "radial-gradient(ellipse at 20% 80%, rgba(5,175,242,0.12) 0%, transparent 65%)"
+              : "radial-gradient(ellipse at 20% 80%, rgba(5,175,242,0.12) 0%, transparent 65%)",
           }}
         />
         <motion.div
           className="absolute top-0 left-7"
-          style={{ height: "2px", background: "linear-gradient(90deg, #D4AF37, #f5d76e)", boxShadow: "0 0 8px rgba(212,175,55,0.5)" }}
+          style={{ height: "2px", background: "linear-gradient(90deg, #05aff2, #4dd9ff)", boxShadow: "0 0 8px rgba(5,175,242,0.5)" }}
           initial={{ width: "40px" }}
           whileHover={{ width: "calc(100% - 28px)", transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
         />
@@ -247,8 +367,8 @@ function ArticleCard({ article, onClick }: { article: typeof ARTICLES[0]; onClic
               letterSpacing: "-3px",
               lineHeight: 0.9,
               background: article.hookLargeGold
-                ? "linear-gradient(90deg, #D4AF37 30%, #fff8e1 50%, #D4AF37 70%)"
-                : "linear-gradient(90deg, #F0F4FF 30%, #D4AF37 50%, #F0F4FF 70%)",
+                ? "linear-gradient(90deg, #05aff2 30%, #4dd9ff 50%, #05aff2 70%)"
+                : "linear-gradient(90deg, #F0F4FF 30%, #05aff2 50%, #F0F4FF 70%)",
               backgroundSize: "200% auto",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -261,7 +381,7 @@ function ArticleCard({ article, onClick }: { article: typeof ARTICLES[0]; onClic
               fontSize: "32px",
               letterSpacing: "5px",
               marginLeft: "4px",
-              color: article.hookLargeGold ? "#F0F4FF" : "#D4AF37",
+              color: article.hookLargeGold ? "#F0F4FF" : "#05aff2",
             }}>
             {article.hookSmall}
           </span>
@@ -275,7 +395,7 @@ function ArticleCard({ article, onClick }: { article: typeof ARTICLES[0]; onClic
           <span>·</span>
           <span>{article.readMin}</span>
         </div>
-        <h3 className="font-heading font-bold text-white leading-snug mb-3 flex-1 group-hover:text-[#D4AF37] transition-colors duration-200"
+        <h3 className="font-heading font-bold text-white leading-snug mb-3 flex-1 group-hover:text-[#05aff2] transition-colors duration-200"
           style={{ fontSize: "0.95rem", letterSpacing: "-0.01em" }}>
           {article.title}
         </h3>
@@ -285,16 +405,18 @@ function ArticleCard({ article, onClick }: { article: typeof ARTICLES[0]; onClic
         <div className="flex items-center gap-2">
           <button
             className="flex items-center gap-1.5 text-[11px] font-semibold px-4 py-2 rounded-full transition-all hover:brightness-110"
-            style={{ background: "#D4AF37", color: "#000" }}
+            style={{ background: "#05aff2", color: "#000" }}
             onClick={(e) => { e.stopPropagation(); onClick(); }}>
             <BookOpen size={11} /> Read
           </button>
-          <button
-            className="flex items-center gap-1.5 text-[11px] font-medium px-4 py-2 rounded-full transition-all hover:border-[#00F5FF] hover:text-[#00F5FF]"
-            style={{ background: "transparent", color: "#8892b0", border: "1px solid rgba(255,255,255,0.12)" }}
-            onClick={(e) => { e.stopPropagation(); onClick(); }}>
-            <Headphones size={11} /> Listen
-          </button>
+          {article.audioSrc && (
+            <button
+              className="flex items-center gap-1.5 text-[11px] font-medium px-4 py-2 rounded-full transition-all hover:border-[#00F5FF] hover:text-[#00F5FF]"
+              style={{ background: "transparent", color: "#8892b0", border: "1px solid rgba(255,255,255,0.12)" }}
+              onClick={(e) => { e.stopPropagation(); onClick(); }}>
+              <Headphones size={11} /> Listen
+            </button>
+          )}
         </div>
       </div>
     </motion.div>
@@ -304,7 +426,7 @@ function ArticleCard({ article, onClick }: { article: typeof ARTICLES[0]; onClic
 // ─── Section ───────────────────────────────────────────────────────────────────
 
 export default function ArticlesSection() {
-  const [open, setOpen] = useState<typeof ARTICLES[0] | null>(null);
+  const [open, setOpen] = useState<ArticleType | null>(null);
 
   return (
     <>
@@ -333,7 +455,11 @@ export default function ArticlesSection() {
       </AnimatePresence>
 
       <style>{`
+        .article-modal-body {
+          font-family: 'Source Sans 3', sans-serif;
+        }
         .article-modal-body h3 {
+          font-family: 'Lexend', sans-serif;
           font-size: 1rem;
           font-weight: 700;
           color: #F0F4FF;
@@ -345,6 +471,22 @@ export default function ArticlesSection() {
           color: #8892b0;
           line-height: 1.85;
           margin-bottom: 1rem;
+          font-family: 'Source Sans 3', sans-serif;
+        }
+        .article-modal-body ul {
+          font-size: 0.93rem;
+          line-height: 1.85;
+          margin-bottom: 1rem;
+          list-style-type: disc;
+          list-style-position: inside;
+        }
+        .article-modal-body ul li {
+          margin-bottom: 0.5rem;
+          color: #8892b0;
+        }
+        .article-modal-body strong {
+          color: #F0F4FF;
+          font-family: 'Lexend', sans-serif;
         }
       `}</style>
     </>
