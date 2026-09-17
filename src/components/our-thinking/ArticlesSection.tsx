@@ -114,6 +114,12 @@ const ARTICLES: ArticleType[] = [
 <p>ODA provides the componentization and standard interfaces needed to modernize that foundation. CAMARA and GSMA Open Gateway provide a common way to expose network capabilities to developers and partners.</p>
 
 <p>NaaS succeeds when these pieces work together—not as another layer added to the legacy stack, but as a deliberate change to how the operator is built.</p>
+
+<div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+  <p style="font-size: 0.85rem; color: #8892b0;">
+    © Northgate Consulting | All rights reserved
+  </p>
+</div>
     `,
   },
   {
