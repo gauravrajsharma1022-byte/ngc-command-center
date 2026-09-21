@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { X, Clock, Calendar, Play, Pause, BookOpen, Headphones } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -537,6 +538,17 @@ function ArticleCard({ article, onClick }: { article: ArticleType; onClick: () =
 
 export default function ArticlesSection() {
   const [open, setOpen] = useState<ArticleType | null>(null);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const articleId = searchParams.get("article");
+    if (articleId !== null) {
+      const article = ARTICLES.find(a => a.id === parseInt(articleId));
+      if (article) {
+        setOpen(article);
+      }
+    }
+  }, [searchParams]);
 
   return (
     <>
