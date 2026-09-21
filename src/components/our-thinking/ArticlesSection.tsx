@@ -23,9 +23,115 @@ type ArticleType = {
 const ARTICLES: ArticleType[] = [
   {
     id: 0,
+    hookLarge: "NETWORK",
+    hookSmall: "ISN'T JUST A PIPE",
+    hookLargeGold: true,
+    date: "Sep 2026",
+    readMin: "7 min",
+    title: "Turning Networks into Experience Platforms",
+    tags: ["Strategy", "Telecom", "Network APIs", "AI"],
+    imageSrc: "/images/network-experience-platform.png",
+    content: `
+<p>Telecom operators are under pressure to move beyond connectivity. The direction is familiar: become a TechCo, build platforms, create ecosystems, expose network capabilities and develop new revenue streams.</p>
+
+<p>The ambition makes sense. But it also creates a contradiction.</p>
+
+<p><strong>If operators follow the same platform playbook as cloud and software companies, what makes the telecom platform different?</strong></p>
+
+<p>The answer may be closer to home than the industry sometimes assumes. Operators already own an asset that can become the foundation of a differentiated platform: the network itself.</p>
+
+<h3>The Network Is More Than Infrastructure</h3>
+
+<p>It operates in real time across millions of customers, devices and interactions. It has visibility into identity, location, connectivity, quality and network conditions. More importantly, operators can act on many of those capabilities directly.</p>
+
+<p>Historically, most of this value has remained inside the network. Customers bought voice, data and connectivity. Applications simply used the network underneath.</p>
+
+<p>That model is changing.</p>
+
+<p>The opportunity now is to make selected network capabilities <strong>programmable, consumable and commercially accessible</strong> to enterprises, developers and partners.</p>
+
+<p>This is where the network begins to move from infrastructure to an <strong>experience platform</strong>.</p>
+
+<h3>From Selling Connectivity to Enabling Outcomes</h3>
+
+<p>The value of an experience platform is not in exposing telecom complexity. It is in hiding it.</p>
+
+<ul style="margin-left: 1.25rem; color: #8892b0;">
+  <li>A bank does not need to understand mobile network architecture to use network intelligence for identity verification or fraud prevention.</li>
+  <li>A gaming company does not need to understand 5G architecture to request improved network performance for a latency-sensitive session.</li>
+  <li>An enterprise should not need to navigate multiple network systems to consume location, device or connectivity capabilities.</li>
+</ul>
+
+<p>The customer consumes an outcome. The operator manages the complexity behind it.</p>
+
+<p><strong>That is a very different proposition from simply selling an API.</strong></p>
+
+<!-- IMAGE_BREAK -->
+
+<h3>Standardisation Creates Another Challenge</h3>
+
+<p>Initiatives such as <strong>CAMARA</strong> and <strong>GSMA Open Gateway</strong> are helping create common ways for developers and enterprises to access network capabilities.</p>
+
+<p>This is important for scale. Developers cannot build global services if every operator exposes the same capability differently.</p>
+
+<p>But standardisation also creates another strategic question:</p>
+
+<p><strong>If operators expose increasingly standardised network APIs, where will differentiation come from?</strong></p>
+
+<p>Not from the API alone. Differentiation moves into what sits <strong>below and above the API</strong>:</p>
+
+<ul style="margin-left: 1.25rem; color: #8892b0;">
+  <li><strong>Below the API</strong> — the operator's ability to deliver the capability reliably: network quality, automation, orchestration, intelligence and real-time execution.</li>
+  <li><strong>Above the API</strong> — the ability to turn that capability into something customers actually want: simple consumption, strong developer experience, relevant use cases, flexible commercial models and the right ecosystem partnerships.</li>
+</ul>
+
+<p>The API connects the two. <strong>The experience creates the value.</strong></p>
+
+<h3>This Changes the Meaning of Telco-to-TechCo</h3>
+
+<p>Becoming a TechCo should not mean leaving the network business behind. Nor should it mean turning every operator into a smaller version of a hyperscaler.</p>
+
+<p>The stronger opportunity is to combine the operator's network advantage with the characteristics of successful technology platforms. That means:</p>
+
+<ul style="margin-left: 1.25rem; color: #8892b0;">
+  <li>Making network capabilities programmable</li>
+  <li>Making services composable</li>
+  <li>Making provisioning near real time</li>
+  <li>Making it easier for developers and partners to build on the network</li>
+  <li>Combining connectivity with cloud, edge, AI, security and industry solutions to create new propositions</li>
+</ul>
+
+<p>The result is not simply a better telecom network. <strong>It is a platform on which new experiences and business models can be built.</strong></p>
+
+<h3>The Harder Transformation Starts Here</h3>
+
+<p>Technology is only part of the challenge.</p>
+
+<p>Operators also need to rethink product management, commercial models, partnerships, developer engagement and the way network capabilities are packaged. A technically perfect API that nobody can easily discover, consume or monetise creates little value.</p>
+
+<p>That is why the next phase of Telco-to-TechCo transformation needs to move beyond the question: <strong>"How many network APIs can we expose?"</strong></p>
+
+<p>The more important question is: <strong>"What experiences and businesses can others build because our network capabilities are available to them?"</strong></p>
+
+<p>That distinction matters.</p>
+
+<p>The operators that make this transition successfully will not move beyond connectivity by abandoning their network advantage. They will move beyond connectivity by <strong>turning that advantage into a platform others can build on.</strong></p>
+
+<p><strong>That is when the network stops being just infrastructure and starts becoming an experience platform.</strong></p>
+
+<div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+  <p style="font-size: 0.85rem; color: #8892b0;">
+    © Northgate Consulting | All rights reserved
+  </p>
+</div>
+    `,
+  },
+  {
+    id: 1,
     hookLarge: "API-FIRST",
     hookSmall: "ARCHITECTURE-LAST",
-    hookLargeGold: true,
+    hookLargeGold: false,
+
     date: "Sep 2026",
     readMin: "6 min",
     title: "Why Operators Stall on NaaS Adoption—and How ODA Changes That",
@@ -123,10 +229,10 @@ const ARTICLES: ArticleType[] = [
     `,
   },
   {
-    id: 1,
+    id: 2,
     hookLarge: "FAILING",
     hookSmall: "silently",
-    hookLargeGold: false,
+    hookLargeGold: true,
     date: "Apr 2026",
     readMin: "12 min",
     title: "Your BSS Transformation Will Fail Unless You Fix Your Business Journeys First",
@@ -155,10 +261,11 @@ const ARTICLES: ArticleType[] = [
 <p>The technology matters. But technology is the second decision, not the first. The first decision is whether you are willing to do the unglamorous, detail-heavy work of understanding your own business well enough to explain it to a new system.</p>`,
   },
   {
-    id: 2,
+    id: 3,
     hookLarge: "HIDDEN",
     hookSmall: "revenue",
-    hookLargeGold: true,
+    hookLargeGold: false,
+
     date: "Apr 2026",
     readMin: "9 min",
     title: "Campaign Management Is the Most Undervalued Module in Your BSS Stack",
@@ -185,10 +292,10 @@ const ARTICLES: ArticleType[] = [
 <p>If you can answer that end to end with confidence, your Campaign Management setup is in reasonable shape. If the answer involves "I think marketing manages that" or "we use a segment file that comes weekly," you are leaving revenue on the table and you probably do not know the number.</p>`,
   },
   {
-    id: 3,
+    id: 4,
     hookLarge: "DATA",
     hookSmall: "first.",
-    hookLargeGold: false,
+    hookLargeGold: true,
     date: "Apr 2026",
     readMin: "8 min",
     title: "Telecom Operators Do Not Have an AI Problem. They Have a Data Problem.",
@@ -319,7 +426,7 @@ function ArticleModal({ article, onClose }: { article: ArticleType; onClose: () 
               src={article.imageSrc}
               alt={article.title}
               className="w-full rounded-lg my-8"
-              style={{ maxHeight: "300px", objectFit: "cover" }}
+              style={{ objectFit: "contain", maxWidth: "100%", height: "auto" }}
             />
           )}
           <div className="article-modal-body" dangerouslySetInnerHTML={{ __html: article.content.split('<!-- IMAGE_BREAK -->')[1] || '' }} />
@@ -366,19 +473,16 @@ function ArticleCard({ article, onClick }: { article: ArticleType; onClick: () =
           initial={{ width: "40px" }}
           whileHover={{ width: "calc(100% - 28px)", transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
         />
-        <div className="flex flex-col gap-1 relative z-10 w-full overflow-hidden">
-          <span className="block font-black leading-none select-none"
+        <div className="flex flex-col gap-1 relative z-10 w-full">
+          <span className="block font-black leading-tight select-none whitespace-normal"
             style={{
-              fontSize: "72px",
-              letterSpacing: "-3px",
-              lineHeight: 0.9,
-              background: article.hookLargeGold
-                ? "linear-gradient(90deg, #05aff2 30%, #4dd9ff 50%, #05aff2 70%)"
-                : "linear-gradient(90deg, #F0F4FF 30%, #05aff2 50%, #F0F4FF 70%)",
-              backgroundSize: "200% auto",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              fontSize: "clamp(38px, 5.5vw, 60px)",
+              letterSpacing: "-2px",
+              lineHeight: 0.95,
+              wordBreak: "break-word",
+              overflowWrap: "break-word",
+              textAlign: "left",
+              color: article.hookLargeGold ? "#05aff2" : "#F0F4FF",
             }}>
             {article.hookLarge}
           </span>
