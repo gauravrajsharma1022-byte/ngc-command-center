@@ -6,6 +6,12 @@ import { X, Clock, Calendar, Play, Pause, BookOpen, Headphones } from "lucide-re
 import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
+// ADDING NEW BLOGS: When you write a new blog:
+// 1. Create as id: 0 with hookLargeGold: true (cyan color)
+// 2. Increment all existing articles by 1 (id: 0→1, id: 1→2, etc)
+// 3. Toggle hookLargeGold pattern: true, false, true, false, true, false
+// 4. Copy image to public/images/ and reference it
+// 5. Use <!-- IMAGE_BREAK --> to split content before/after the image
 
 type ArticleType = {
   id: number;
@@ -22,11 +28,212 @@ type ArticleType = {
 };
 
 const ARTICLES: ArticleType[] = [
+  // ─── BLOG 3 (LATEST - Always First) ───────────────────────────────────
   {
     id: 0,
+    hookLarge: "AI-NATIVE TELCO",
+    hookSmall: "PROVE IT WORKS",
+    hookLargeGold: true,
+    date: "Sep 2026",
+    readMin: "14 min",
+    title: "AI-Native Telco: The Demo Is Easy. Proving It Works Across Your Systems Is Hard.",
+    tags: ["AI", "Telecom", "BSS/OSS", "Strategy"],
+    imageSrc: "/images/ai-native-telco-foundations.png",
+    content: `
+<p>A customer buys a new mobile plan. The app says it is active, but the data service does not work. An AI assistant reads the complaint, checks the account and suggests a fix. In a product demonstration, the answer appears in seconds.</p>
+
+<p>Now follow the problem through your actual operator environment.</p>
+
+<p>CRM shows the new plan. Order management says the request is complete. Provisioning shows a partial failure. Charging still holds the old allowance. The network reports another state altogether.</p>
+
+<p>Which record should the assistant trust? What is it allowed to change? Who takes responsibility if it makes the wrong change?</p>
+
+<p>These questions expose two linked challenges that we're seeing across the industry. Operators need BSS/OSS foundations that support reliable AI decisions. They also need a way to distinguish products that can work safely across those foundations from products that merely present an impressive AI interface.</p>
+
+<h3>SCOPE OF THIS ARTICLE</h3>
+
+<p>This article focuses specifically on AI agents designed to complete end-to-end actions across multiple systems—agents that take action, not just recommend it. If you're evaluating AI for narrower use cases (anomaly detection, recommendations, summarisation, customer service), some of these five foundations apply differently. The key is knowing which ones matter for your specific use case.</p>
+
+<p>Here's how we think about it: Can intelligence move from understanding a problem to completing and verifying the right action in a live customer journey? Everything between those two points matters.</p>
+
+<h3>The Gap Between an Answer and an Outcome</h3>
+
+<p>AI can summarise calls, recommend offers, detect anomalies and help teams investigate faults. These are useful capabilities. But a customer whose service is down needs more than a good explanation.</p>
+
+<p>Resolving that customer's issue may require the operator to confirm the purchased product, inspect the order, compare inventory with network state, check charging, correct provisioning, verify the result and communicate it back. The action crosses business and operational systems, each with its own rules and owner.</p>
+
+<p>A model can recommend a correction. Your surrounding architecture determines whether that correction is valid, authorised, completed and recorded. If those controls are missing, adding AI can accelerate confusion as easily as it accelerates resolution.</p>
+
+<p>What we've learned from emerging industry standards like TM Forum's AI-Native Blueprint: the critical word is governed. An agent must operate alongside dependable systems of record, within clear permissions and with evidence of what it did.</p>
+
+<h3>Five Foundations Operators Should Examine First</h3>
+
+<p>Before asking what an AI product can do, ask what your environment allows it to know and do. These five foundations apply specifically to AI agents that take autonomous or semi-autonomous actions across multiple systems.</p>
+
+<p><strong>1. A trustworthy service view.</strong></p>
+
+<p>Can you connect customer, product, order, inventory, charging and network state in a single authoritative view? Where records disagree (and they will), is there an identified system of record for each decision, a timestamp and a documented way to resolve the conflict?</p>
+
+<p>Most operators we talk to have this in pieces, but not unified. Building this clarity upfront determines everything that follows. This is foundational work, but it's also the work that prevents an AI agent from making decisions based on stale or conflicting data.</p>
+
+<p><strong>2. Controlled actions.</strong></p>
+
+<p>Are tasks like changing an allowance, retrying provisioning or issuing a credit exposed through managed services with validation, permissions, status updates and audit trails? An accepted request is not proof of a restored service.</p>
+
+<p>This is where we see vendors oversell. They show an AI agent submitting a request and stopping there. They don't show whether that request actually completed in the downstream system or failed halfway through. Completion is what matters, not submission.</p>
+
+<p><strong>3. End-to-end ownership.</strong></p>
+
+<p>Who owns the customer outcome when care, IT, network operations, finance and a delivery partner are all involved? An AI agent cannot repair an accountability gap through orchestration alone.</p>
+
+<p>This conversation needs to happen before you select any product. If ownership is unclear today, adding AI won't clarify it. If anything, it will make it worse by introducing another actor (the AI) into an already ambiguous accountability chain.</p>
+
+<p><strong>4. Boundaries and recovery.</strong></p>
+
+<p>Which decisions can run automatically? Which require approval? Can you stop an agent, review its basis for action and recover when a downstream task fails? Can you rollback a partial change or reverse a decision that turned out to be wrong?</p>
+
+<p>These are the questions that separate proof-of-concept from production-ready. Budget real time for this conversation because the answers will shape how you deploy the AI and how much manual oversight you'll need.</p>
+
+<p><strong>5. Outcome measures.</strong></p>
+
+<p>Are teams measuring completed resolutions, failed orders, repeat contacts, manual effort, revenue leakage and customer impact? A high-quality model response is only one step in the journey.</p>
+
+<p>This matters because it forces the conversation from "can it generate a good answer?" to "does it improve outcomes that matter to the business?" Revenue leakage, for example, includes orders that fail to complete fully, discounts issued in error, manual rework effort and customer churn due to service failures. Track these before and after AI implementation to measure real impact.</p>
+
+<p>These foundations do not require a wholesale replacement of every legacy system. What they do require is an honest view of which data, interfaces and controls must improve for your specific use case to work. And importantly, you can build these incrementally, starting with one critical journey rather than betting the entire BSS/OSS.</p>
+
+<!-- IMAGE_BREAK -->
+
+<h3>What Should "AI-Native" Actually Mean in a Telecom Purchase?</h3>
+
+<p>There is no single marketing label that proves a product is AI-native. We've looked at vendors using excellent third-party models, vendors building their own models and combinations of both. The choice of model matters far less than how intelligence is designed into the product's workflows, data access, controls and operations.</p>
+
+<p>Here's what we've seen work: a credible AI-native product should sense, decide, act, verify and learn under your control. It should make those capabilities transparent to you. This framework reflects how production AI systems are being designed across the industry today.</p>
+
+<p>This is a buyer's framework, not an industry certification. It aligns with emerging standards like TM Forum's AI-Native Blueprint and reflects established AI risk-management principles that demand documented testing, governance and monitoring throughout the system lifecycle.</p>
+
+<h3>What to Ask Vendors and What Evidence to Request</h3>
+
+<p><strong>Buyer question: What does the AI know?</strong></p>
+
+<p>Evidence to request: Data sources, freshness, lineage, access controls and how you handle conflicting BSS/OSS records. If a vendor can't explain how their agent decides which system of record to trust, that's a red flag.</p>
+
+<p><strong>Buyer question: What can it do?</strong></p>
+
+<p>Evidence to request: A live list of permitted actions, policy checks, approval points and service-specific limits. "It can do whatever the model suggests" is not acceptable. "It can retry provisioning only if the original order is confirmed and approval is granted" is what you're looking for.</p>
+
+<p><strong>Buyer question: How does it work across our systems?</strong></p>
+
+<p>Evidence to request: An end-to-end flow through your order, provisioning, charging and assurance systems. Show documented interfaces and failure states. Walk through what happens when a downstream system is unavailable or behaves unexpectedly.</p>
+
+<p><strong>Buyer question: How can we trust the result?</strong></p>
+
+<p>Evidence to request: Decision and action logs showing WHAT it did and WHEN it did it. Important note: Modern AI may not be able to fully explain WHY it made a decision—this is a known limitation of current technology. Focus on auditing actions and verifying outcomes rather than demanding explainability of reasoning. Ask for test results, monitoring capabilities, human overrides, rollback options and proof of completion. "Request submitted" is not sufficient; proof of completion is what matters.</p>
+
+<p><strong>Buyer question: Can we operate it over time?</strong></p>
+
+<p>Evidence to request: Model and prompt versioning, change controls, performance monitoring, incident ownership, cost visibility and support commitments. Understand who owns the product when something goes wrong in production.</p>
+
+<p><strong>Buyer question: Can we retain choice?</strong></p>
+
+<p>Evidence to request: Clarity on where your data lives, how it flows and what integration effort would be required to switch vendors in the future. Full data portability may not be realistic (vendors understandably want to protect IP and security), but you should understand integration boundaries and switching costs upfront. This matters because AI vendor relationships matter, and vendor lock-in is a real risk in this space.</p>
+
+<h3>Ask for One Uncomfortable Demonstration</h3>
+
+<p>Product evaluations often begin with the vendor's best-designed scenario. Insist on testing both success cases AND failure cases.</p>
+
+<p>Give each shortlisted vendor the same scenario: a bundle purchase succeeded, but provisioning failed and charging has already changed. Provide a realistic, controlled test environment with conflicting records. Ask the vendor to show the full journey, including the failure.</p>
+
+<p>Watch what the product actually does:</p>
+
+<p><strong>1. Detect:</strong> Does it identify the conflict rather than accept the first "completed" status? Can it see that provisioning failed while charging succeeded?</p>
+
+<p><strong>2. Explain:</strong> Can it show which records informed the decision and how current they are? Can it articulate the contradiction it discovered?</p>
+
+<p><strong>3. Constrain:</strong> Does it check entitlement, permissions and policy before changing anything? Or does it recommend changes to systems it isn't authorised to access?</p>
+
+<p><strong>4. Act:</strong> Can it invoke a controlled action across the required systems, or must a person re-enter the recommendation elsewhere? If the answer is "must a person re-enter," understand the cost and where that manual step will happen.</p>
+
+<p><strong>5. Verify:</strong> Does it confirm the network and charging outcome, rather than stopping at "request submitted"? Stopping at the request is not sufficient.</p>
+
+<p><strong>6. Recover:</strong> If the correction fails halfway through, does it pause, escalate and preserve a clear audit trail? Can you understand what it tried and what went wrong?</p>
+
+<p>Why test edge cases? Because vendor demos typically showcase success. Edge cases reveal whether the product has been designed to handle complexity predictably. If it can handle this difficult scenario, you've found a robust solution. If it can't, you've saved yourself from a fragile implementation.</p>
+
+<p>Run the same case with incomplete data, an unavailable downstream system and a request outside the agent's authority. The point is not to demand full autonomy on day one. It is to see whether the product behaves predictably when your telecom environment does not cooperate.</p>
+
+<p>An AI assistant that only recommends a next step can still be worth buying. The issue is buying it as an autonomous, end-to-end solution when it has demonstrated only assisted decision-making. Contract and price for the capability proven.</p>
+
+<h3>From Theory to Implementation: Start With One Journey</h3>
+
+<p>Here's what we see get stuck: operators try to implement five foundations across their entire BSS/OSS at once. It's too expensive. It's too slow. It feels like ripping everything out and starting over.</p>
+
+<p>That's not necessary.</p>
+
+<p>Instead: Start with one critical journey. Not the easiest one—the one where you lose money today. Define exactly what that journey needs: which data, which interfaces, which controls.</p>
+
+<p>This pragmatic approach means:</p>
+
+<ul style="margin-left: 1.25rem; color: #8892b0;">
+  <li>Pick one valuable journey (ask yourself: where do we bleed money today?)</li>
+  <li>Define success clearly (what does "resolved" look like for this journey?)</li>
+  <li>Pilot the AI product in a controlled environment</li>
+  <li>Learn what foundation gaps exist for THAT journey</li>
+  <li>Fix those gaps incrementally</li>
+  <li>Measure impact (did this actually improve outcomes?)</li>
+  <li>Then expand to the next journey</li>
+</ul>
+
+<p>You don't need perfect foundations everywhere. You need sufficient foundations for each specific use case you're deploying AI into. Build from there.</p>
+
+<h3>The Vendor Perspective</h3>
+
+<p>We acknowledge that vendors operate within real constraints—technical limitations, IP protection, security boundaries and business models. They can't simply expose all data, all interfaces and all controls. This guide isn't about being adversarial. It's about asking vendors to be transparent within their constraints.</p>
+
+<p>A vendor that can articulate their constraints AND show how they've solved within those constraints is exactly the kind of partner you want. Vendor maturity isn't about having no constraints; it's about being honest about them and having engineering to work around them.</p>
+
+<p>Similarly, some vendors claim their AI works with legacy systems through abstraction layers rather than requiring BSS/OSS modernisation. This IS possible, but there's a trade-off: abstraction layers add complexity, latency and integration effort. For some use cases, it's worth it. For others, selective modernisation of key systems is cleaner. There's no universal answer—it depends on your architecture and tolerance for complexity.</p>
+
+<h3>Put Proof Into Your Procurement Process</h3>
+
+<p>A useful evaluation starts before you send the request for proposal. Select two or three valuable journeys (the ones where you lose money today), record their current performance and define what successful outcomes mean.</p>
+
+<p>Involve your business owners, enterprise architecture, BSS/OSS, security, data governance, operations and procurement in the same assessment. This is not an IT decision. It's a business decision that IT must validate.</p>
+
+<p>Then ask vendors to separate available today, configuration required, custom development required and on the roadmap for every claimed capability. Request evidence in an operator-controlled environment. Agree on acceptance criteria covering completion, exceptions, auditability, security, operating cost and time to change.</p>
+
+<p>One more thing: clarify liability upfront. Ask your vendor directly: "If your AI makes a decision that causes a customer outage, who bears the cost and responsibility?" Their answer reveals how confident they are in their product. This is a negotiation—you may not get full indemnity—but clarity BEFORE you sign is critical.</p>
+
+<p>This is where an independent, end-to-end assessment adds value. The commercial owner can test the promised outcome, architects can inspect the integration, operations teams can challenge failure handling and procurement can turn demonstrated capability into enforceable commitments.</p>
+
+<h3>The Question Leaders Should Take Into the Next Vendor Meeting</h3>
+
+<p>Do not ask only, "What can your AI agent do?"</p>
+
+<p>Ask this instead:</p>
+
+<p>"Show us what happens when our customer's order, charging and network records disagree. Show us what your product knows, what it is authorised to change, how it handles failure and how you prove the customer's service is restored."</p>
+
+<p>The answer will reveal far more than a polished chatbot demonstration.</p>
+
+<p>Operators have a genuine opportunity to use AI to improve service, speed and economics. To capture it, you must modernise the parts of BSS/OSS that prevent reliable action and buy products against evidence rather than labels. The operators who can do both will move beyond AI pilots toward outcomes customers can feel and leaders can measure.</p>
+
+<p>That's where transformation happens. Not in the demos. In the difficult conversations about architecture, ownership and proof.</p>
+
+<div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+  <p style="font-size: 0.85rem; color: #8892b0;">
+    © Northgate Consulting | All rights reserved
+  </p>
+</div>
+    `,
+  },
+
+  // ─── BLOG 2 ────────────────────────────────────────────────────────────
+  {
+    id: 1,
     hookLarge: "NETWORK",
     hookSmall: "ISN'T JUST A PIPE",
-    hookLargeGold: true,
+    hookLargeGold: false,
     date: "Sep 2026",
     readMin: "7 min",
     title: "Turning Networks into Experience Platforms",
@@ -127,12 +334,13 @@ const ARTICLES: ArticleType[] = [
 </div>
     `,
   },
+
+  // ─── BLOG 1 ────────────────────────────────────────────────────────────
   {
-    id: 1,
+    id: 2,
     hookLarge: "API-FIRST",
     hookSmall: "ARCHITECTURE-LAST",
-    hookLargeGold: false,
-
+    hookLargeGold: true,
     date: "Sep 2026",
     readMin: "6 min",
     title: "Why Operators Stall on NaaS Adoption—and How ODA Changes That",
@@ -229,11 +437,13 @@ const ARTICLES: ArticleType[] = [
 </div>
     `,
   },
+
+  // ─── EXISTING BLOGS (Shifted IDs) ───────────────────────────────────
   {
-    id: 2,
+    id: 3,
     hookLarge: "FAILING",
     hookSmall: "silently",
-    hookLargeGold: true,
+    hookLargeGold: false,
     date: "Apr 2026",
     readMin: "12 min",
     title: "Your BSS Transformation Will Fail Unless You Fix Your Business Journeys First",
@@ -262,11 +472,10 @@ const ARTICLES: ArticleType[] = [
 <p>The technology matters. But technology is the second decision, not the first. The first decision is whether you are willing to do the unglamorous, detail-heavy work of understanding your own business well enough to explain it to a new system.</p>`,
   },
   {
-    id: 3,
+    id: 4,
     hookLarge: "HIDDEN",
     hookSmall: "revenue",
-    hookLargeGold: false,
-
+    hookLargeGold: true,
     date: "Apr 2026",
     readMin: "9 min",
     title: "Campaign Management Is the Most Undervalued Module in Your BSS Stack",
@@ -293,10 +502,10 @@ const ARTICLES: ArticleType[] = [
 <p>If you can answer that end to end with confidence, your Campaign Management setup is in reasonable shape. If the answer involves "I think marketing manages that" or "we use a segment file that comes weekly," you are leaving revenue on the table and you probably do not know the number.</p>`,
   },
   {
-    id: 4,
+    id: 5,
     hookLarge: "DATA",
     hookSmall: "first.",
-    hookLargeGold: true,
+    hookLargeGold: false,
     date: "Apr 2026",
     readMin: "8 min",
     title: "Telecom Operators Do Not Have an AI Problem. They Have a Data Problem.",
